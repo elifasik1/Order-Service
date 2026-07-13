@@ -1,0 +1,15 @@
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\bin\Debug\net10.0\OrderService.Application.deps.json
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\bin\Debug\net10.0\OrderService.Application.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\bin\Debug\net10.0\OrderService.Application.pdb
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\bin\Debug\net10.0\OrderService.Domain.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\bin\Debug\net10.0\OrderService.Domain.pdb
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.csproj.AssemblyReference.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.AssemblyInfoInputs.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.AssemblyInfo.cs
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.csproj.CoreCompileInputs.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderSer.7EAAA39B.Up2Date
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\refint\OrderService.Application.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.pdb
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\ref\OrderService.Application.dll

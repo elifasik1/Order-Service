@@ -1,0 +1,11 @@
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\bin\Debug\net10.0\OrderService.Domain.deps.json
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\bin\Debug\net10.0\OrderService.Domain.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\bin\Debug\net10.0\OrderService.Domain.pdb
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.AssemblyInfoInputs.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.AssemblyInfo.cs
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\refint\OrderService.Domain.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\OrderService.Domain.pdb
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Domain\obj\Debug\net10.0\ref\OrderService.Domain.dll
