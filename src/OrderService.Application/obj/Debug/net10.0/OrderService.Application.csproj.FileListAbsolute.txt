@@ -13,3 +13,4 @@ C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\refint\OrderService.Application.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.pdb
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\ref\OrderService.Application.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\obj\Debug\net10.0\OrderService.Application.sourcelink.json
