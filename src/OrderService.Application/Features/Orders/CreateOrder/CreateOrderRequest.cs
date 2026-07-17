@@ -3,7 +3,7 @@ public class CreateOrderRequest
     public string CustomerName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;// Kullanıcıdan alınacak
 
-    public int PhoneNumber { get; set; } // Kullanıcıdan alınacak
+    public string PhoneNumber { get; set; } = string.Empty; // Kullanıcıdan alınacak
 
     public string Address { get; set; } = string.Empty; // Kullanıcıdan alınacak
 
