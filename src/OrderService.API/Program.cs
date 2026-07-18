@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<CreateOrderHandler>();
+builder.Services.AddScoped<CreateOrderValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,8 +31,13 @@ app.MapGet("/health", () =>
 .WithName("GetHealth");
 
 app.MapPost("/orders",
-(CreateOrderRequest request, CreateOrderHandler handler) =>
+(CreateOrderRequest request, CreateOrderValidator validator, CreateOrderHandler handler) =>
 {
+    var result = validator.Validate(request);
+    if (!result.IsValid)
+    {
+        return Results.BadRequest(result.Errors);
+    }
     var response = handler.Handle(request);
     return Results.Ok(response);
 });
