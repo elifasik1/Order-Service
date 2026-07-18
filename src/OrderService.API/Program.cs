@@ -2,8 +2,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
+builder.Services.AddOpenApi();
+builder.Services.AddScoped<CreateOrderHandler>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,5 +28,12 @@ app.MapGet("/health", () =>
          
 })
 .WithName("GetHealth");
+
+app.MapPost("/orders",
+(CreateOrderRequest request, CreateOrderHandler handler) =>
+{
+    var response = handler.Handle(request);
+    return Results.Ok(response);
+});
 
 app.Run();
