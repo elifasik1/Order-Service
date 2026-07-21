@@ -1,3 +1,7 @@
+
+using OrderService.Application.Interfaces;
+using OrderService.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddOpenApi();
 builder.Services.AddScoped<CreateOrderHandler>();
 builder.Services.AddScoped<CreateOrderValidator>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
