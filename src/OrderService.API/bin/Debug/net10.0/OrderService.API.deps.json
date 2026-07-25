@@ -16,6 +16,14 @@
           "OrderService.API.dll": {}
         }
       },
+      "FluentValidation/8.2.3": {
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.2.3.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.OpenApi/10.0.3": {
         "dependencies": {
           "Microsoft.OpenApi": "2.0.0"
@@ -37,6 +45,7 @@
       },
       "OrderService.Application/1.0.0": {
         "dependencies": {
+          "FluentValidation": "8.2.3",
           "OrderService.Domain": "1.0.0"
         },
         "runtime": {
@@ -73,6 +82,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FluentValidation/8.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mw3Kcn+JT2+pZls3x1Eh1nx0FQEJKzAUQTNu5aYxxwtZf1PfOYGFUIBenBr74hFQeVtakrSC+o+fDzHxAd8ZDQ==",
+      "path": "fluentvalidation/8.2.3",
+      "hashPath": "fluentvalidation.8.2.3.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/10.0.3": {
       "type": "package",

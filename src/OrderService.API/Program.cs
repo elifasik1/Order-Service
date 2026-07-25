@@ -11,6 +11,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<CreateOrderHandler>();
 builder.Services.AddScoped<CreateOrderValidator>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<GetOrdersHandler>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,6 +46,12 @@ app.MapPost("/orders",
     }
     var response = handler.Handle(request);
     return Results.Ok(response);
+});
+
+app.MapGet("/orders",
+(GetOrdersHandler handler) =>
+{
+    return handler.Handle();
 });
 
 app.Run();

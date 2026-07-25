@@ -38,3 +38,4 @@ C:\Users\elifa\Desktop\OrderService\src\OrderService.API\obj\Debug\net10.0\Order
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\obj\Debug\net10.0\OrderService.API.genruntimeconfig.cache
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\obj\Debug\net10.0\ref\OrderService.API.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\obj\Debug\net10.0\OrderService.API.sourcelink.json
+C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\FluentValidation.dll
