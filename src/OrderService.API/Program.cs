@@ -13,6 +13,7 @@ builder.Services.AddScoped<CreateOrderHandler>();
 builder.Services.AddScoped<CreateOrderValidator>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<GetOrdersHandler>();
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 var app = builder.Build();
 
