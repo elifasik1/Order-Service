@@ -1,8 +1,7 @@
-using System.Security.Cryptography;
 using Domain.Entities;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Data;
-
+using Microsoft.EntityFrameworkCore;
 namespace OrderService.Infrastructure.Repositories;
 
 
@@ -15,14 +14,14 @@ public class OrderRepository : IOrderRepository
     {
          _context = context;
     }
-    public void Add(Order order)
-    {
-        _context.Orders.Add(order);
-        _context.SaveChanges();
-    }
+    public async Task AddAsync(Order order)
+{
+    _context.Orders.Add(order);
+    await _context.SaveChangesAsync();
+}
 
-    public List<Order> GetAll()
-    {
-        return _context.Orders.ToList();
-    }
+    public async Task<List<Order>> GetAllAsync()
+{
+    return await _context.Orders.ToListAsync();
+}
 }

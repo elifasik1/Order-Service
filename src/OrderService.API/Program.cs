@@ -1,4 +1,5 @@
 
+using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Data;
@@ -48,21 +49,22 @@ app.MapGet("/health", () =>
 .WithName("GetHealth");
 
 app.MapPost("/orders",
-(CreateOrderRequest request, CreateOrderValidator validator, CreateOrderHandler handler) =>
+async (CreateOrderRequest request, CreateOrderValidator validator, CreateOrderHandler handler) =>
 {
     var result = validator.Validate(request);
     if (!result.IsValid)
     {
         return Results.BadRequest(result.Errors);
     }
-    var response = handler.Handle(request);
-    return Results.Ok(response);
+     var response = await handler.Handle(request);
+     return Results.Ok(response);
 });
 
 app.MapGet("/orders",
-(GetOrdersHandler handler) =>
+async (GetOrdersHandler handler) =>
 {
-    return handler.Handle();
+    var response = await handler.Handle();
+    return Results.Ok(response);
 });
 
 app.Run();

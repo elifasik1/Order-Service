@@ -12,9 +12,9 @@ public class GetOrdersHandler
     }
 
     // Metot
-    public GetOrdersResponse Handle()
+    public async Task<GetOrdersResponse> Handle()
     {
-        var orders = _orderRepository.GetAll();
+        var orders = await _orderRepository.GetAllAsync();
         return new GetOrdersResponse
         {
             Orders = orders

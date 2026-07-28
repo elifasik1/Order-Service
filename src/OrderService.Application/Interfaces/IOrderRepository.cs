@@ -5,6 +5,6 @@ namespace OrderService.Application.Interfaces;
 public interface IOrderRepository
 {
     
-    void Add(Order order);
-    List<Order> GetAll();
+    Task AddAsync(Order order);
+    Task<List<Order>> GetAllAsync();
 }
