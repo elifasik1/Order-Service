@@ -21,6 +21,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
 });
+builder.Services.AddScoped<UpdateOrderHandler>();
+builder.Services.AddScoped<UpdateOrderValidator>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -67,4 +69,26 @@ async (GetOrdersHandler handler) =>
     return Results.Ok(response);
 });
 
+app.MapPut("/orders/{id:guid}",
+async (
+    Guid id,
+    UpdateOrderRequest request,
+    UpdateOrderHandler handler,
+    UpdateOrderValidator validator) =>
+{
+   var result = validator.Validate(request);
+
+if (!result.IsValid)
+{
+    return Results.BadRequest(result.Errors);
+}
+    var response = await handler.Handle(id, request);
+
+    if (response.Message == "Sipariş bulunamadı.")
+    {
+        return Results.NotFound(response);
+    }
+
+    return Results.Ok(response);
+});
 app.Run();

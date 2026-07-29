@@ -10,10 +10,19 @@ public class CreateOrderHandler
         decimal totalPrice =request.Quantity * productPrice;
         
     
-        var order = new Order(
-            request.CustomerName , totalPrice);
+      var order = new Order(
+    request.CustomerName,
+    request.Email,
+    request.PhoneNumber,
+    request.Address,
+    request.ProductID,
+    request.Quantity,
+    totalPrice);
+
+
             
          await _orderRepository.AddAsync(order);  // ← Yeni eklediğimiz satır    
+         await _orderRepository.SaveChangesAsync();   // <-- BUNU EKLE
         return new CreateOrderResponse
         {
              
