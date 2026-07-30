@@ -23,6 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddScoped<UpdateOrderHandler>();
 builder.Services.AddScoped<UpdateOrderValidator>();
+builder.Services.AddScoped<DeleteOrderHandler>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -90,5 +91,17 @@ if (!result.IsValid)
     }
 
     return Results.Ok(response);
+});
+app.MapDelete("/orders/{id:guid}",
+async (Guid id, DeleteOrderHandler handler) =>
+{
+    var response = await handler.Handle(id);
+
+    if (!response.Success)
+{
+    return Results.NotFound(response);
+}
+
+return Results.Ok(response);
 });
 app.Run();

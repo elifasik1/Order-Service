@@ -20,6 +20,10 @@ public class OrderRepository : IOrderRepository
    await _context.Orders.AddAsync(order);
 }
 
+    public void Delete(Order order)
+    {
+        _context.Orders.Remove(order);
+    }
 
     public async Task<List<Order>> GetAllAsync()
 {
