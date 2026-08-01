@@ -1,9 +1,15 @@
 
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
+using OrderService.Application.Features.Auth.Login;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Data;
 using OrderService.Infrastructure.Repositories;
+using OrderService.Infrastructure.Services;
+using OrderService.Infrastructure.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +30,25 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddScoped<UpdateOrderHandler>();
 builder.Services.AddScoped<UpdateOrderValidator>();
 builder.Services.AddScoped<DeleteOrderHandler>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(options =>
+{    
+var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>() ?? throw new InvalidOperationException("JWT settings not found.");
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+    };
+});
+builder.Services.AddScoped<LoginHandler>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -34,6 +59,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseHttpsRedirection();
 
@@ -103,5 +130,11 @@ async (Guid id, DeleteOrderHandler handler) =>
 }
 
 return Results.Ok(response);
+});
+app.MapPost("/auth/login",
+async (LoginRequest request, LoginHandler handler) =>
+{
+    var response = await handler.Handle(request);
+    return Results.Ok(response);
 });
 app.Run();
