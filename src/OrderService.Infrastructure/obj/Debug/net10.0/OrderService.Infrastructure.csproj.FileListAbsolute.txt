@@ -10,9 +10,9 @@ C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\ne
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.AssemblyInfo.cs
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.sourcelink.json
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderSer.30472D0A.Up2Date
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\refint\OrderService.Infrastructure.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.pdb
 C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\ref\OrderService.Infrastructure.dll
-C:\Users\elifa\Desktop\OrderService\src\OrderService.Infrastructure\obj\Debug\net10.0\OrderService.Infrastructure.sourcelink.json

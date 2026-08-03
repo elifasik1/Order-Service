@@ -6,6 +6,7 @@ using System.Text;
 using Domain.Entities;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Settings;
+using System.Security.Cryptography;
 
 
 namespace OrderService.Infrastructure.Services;
@@ -41,5 +42,14 @@ public class JwtService : IJwtService
     return Task.FromResult(tokenHandler.WriteToken(token));
 
     
+}
+
+public string GenerateRefreshToken()
+{
+    var randomBytes = new byte[32];
+
+    RandomNumberGenerator.Fill(randomBytes);
+
+    return Convert.ToBase64String(randomBytes);
 }
 }

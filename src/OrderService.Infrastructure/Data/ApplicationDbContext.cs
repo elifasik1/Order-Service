@@ -3,17 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace OrderService.Infrastructure.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+    : DbContext(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
-
-    public DbSet<Order> Orders { get; set; }
-    public DbSet<User> Users { get; set; }
-
-
-
-
+    public DbSet<Order> Orders => Set<Order>();
+    public DbSet<User> Users => Set<User>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 }

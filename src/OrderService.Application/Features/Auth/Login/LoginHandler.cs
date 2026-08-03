@@ -1,14 +1,18 @@
 using OrderService.Application.Interfaces;
+using Domain.Entities;
 namespace OrderService.Application.Features.Auth.Login;
 public class LoginHandler
 {
     private readonly IUserRepository _userRepository;
 
     private readonly IJwtService _jwtService;
-    public LoginHandler(IUserRepository userRepository, IJwtService jwtService)
+    private readonly IRefreshTokenRepository _refreshTokenRepository;
+
+    public LoginHandler(IUserRepository userRepository, IJwtService jwtService, IRefreshTokenRepository refreshTokenRepository)
     {
         _userRepository = userRepository;
         _jwtService = jwtService;
+        _refreshTokenRepository = refreshTokenRepository;
     }
 
    public async Task<LoginResponse> Handle(LoginRequest request)
@@ -24,11 +28,26 @@ public class LoginHandler
         }
 
         var token = await _jwtService.GenerateAccessTokenAsync(user);
+       var refreshTokenValue = _jwtService.GenerateRefreshToken();
 
+        var refreshToken = new RefreshToken
+{
+    Id = Guid.NewGuid(),
+    Token = refreshTokenValue,
+    UserId = user.Id,
+    CreatedAt = DateTime.UtcNow,
+    ExpiresAt = DateTime.UtcNow.AddDays(7),
+    RevokedAt = null
+};
+await _refreshTokenRepository.AddAsync(refreshToken);
+await _refreshTokenRepository.SaveChangesAsync();
         return new LoginResponse
-        {
-            AccessToken = token
-        };
+{
+    AccessToken = token,
+    RefreshToken = refreshTokenValue
+};
+
+        
        
     }
 
