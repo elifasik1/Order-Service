@@ -11,7 +11,7 @@ public interface IOrderRepository
     Task<Order?> FindByIdAsync(Guid orderId);
     Task SaveChangesAsync();
     public void Delete(Order order);
-    
+    Task<List<Order>> GetByUserIdAsync(Guid userId);
     
 
 }

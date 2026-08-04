@@ -1,6 +1,7 @@
 using Domain.Enums;
 
 namespace Domain.Entities;
+
 public class User
 {
     public Guid Id { get; set; }
@@ -10,11 +11,12 @@ public class User
 
     public string Email { get; set; } = string.Empty;
     public string PasswordHash { get; set; } = string.Empty;
+
     public UserRole UserRole { get; set; }
 
-
     public UserStatus UserStatus { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
-
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 }

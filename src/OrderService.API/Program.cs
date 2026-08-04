@@ -14,6 +14,8 @@ using OrderService.Application.Features.Auth.Register;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using OrderService.API.Extensions;
+using OrderService.Application.Features.Orders.GetMyOrders;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
@@ -64,7 +66,7 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"))
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<RefreshHandler>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
-
+builder.Services.AddScoped<MyOrdersHandler>();
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
     ?? throw new InvalidOperationException("JWT settings not found.");
 
@@ -135,47 +137,20 @@ app.MapGet("/health", () =>
 .WithName("GetHealth");
 
 app.MapPost("/orders",
-async (CreateOrderRequest request, CreateOrderValidator validator, CreateOrderHandler handler) =>
-{
-    var result = validator.Validate(request);
-
-    if (!result.IsValid)
-        return Results.BadRequest(result.Errors);
-
-    var response = await handler.Handle(request);
-
-    return Results.Ok(response);
-})
-.RequireAuthorization();
-
-app.MapGet("/orders",
-async (GetOrdersHandler handler) =>
-{
-    var response = await handler.Handle();
-    return Results.Ok(response);
-})
-.RequireAuthorization();
-
-app.MapPut("/orders/{id:guid}",
 async (
-    Guid id,
-    UpdateOrderRequest request,
-    UpdateOrderHandler handler,
-    UpdateOrderValidator validator) =>
+    HttpContext context,
+    CreateOrderRequest request,
+    CreateOrderValidator validator,
+    CreateOrderHandler handler) =>
 {
     var result = validator.Validate(request);
 
     if (!result.IsValid)
-    {
         return Results.BadRequest(result.Errors);
-    }
 
-    var response = await handler.Handle(id, request);
+    var userId = context.User.GetUserId();
 
-    if (response.Message == "Sipariş bulunamadı.")
-    {
-        return Results.NotFound(response);
-    }
+    var response = await handler.Handle(userId, request);
 
     return Results.Ok(response);
 })
@@ -197,6 +172,20 @@ return Results.Ok(response);
 .RequireAuthorization("AdminOnly");
 
 
+app.MapGet("/orders/my",
+async (
+    HttpContext context,
+    MyOrdersHandler handler) =>
+{
+    var userId = context.User.GetUserId();
+
+    var response = await handler.Handle(userId);
+
+    return Results.Ok(response);
+})
+.RequireAuthorization("UserOrAdmin");
+
+
 app.MapPost("/auth/login",
 async (LoginRequest request, LoginHandler handler) =>
 {
@@ -210,11 +199,12 @@ app.MapPost("/auth/register",
 async (RegisterRequest request, RegisterValidator validator, RegisterHandler handler) =>
 {
     var result = validator.Validate(request);
+
     if (!result.IsValid)
-    {
         return Results.BadRequest(result.Errors);
-    }
+
     var response = await handler.Handle(request);
+
     return Results.Ok(response);
 });
 
@@ -223,22 +213,24 @@ app.MapPost("/auth/refresh",
 async (RefreshRequest request, RefreshHandler handler) =>
 {
     var response = await handler.Handle(request);
+
     return Results.Ok(response);
 });
 
+
+
 app.MapGet("/me", (HttpContext context) =>
 {
-    var userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    var email = context.User.FindFirst(ClaimTypes.Email)?.Value;
-    var role = context.User.FindFirst(ClaimTypes.Role)?.Value;
-
     return Results.Ok(new
     {
-        UserId = userId,
-        Email = email,
-        Role = role
+        UserId = context.User.GetUserId(),
+        Email = context.User.GetEmail(),
+        Role = context.User.GetRole(),
+        Name = context.User.GetFullName()
     });
 })
 .RequireAuthorization();
+
+
 
 app.Run();

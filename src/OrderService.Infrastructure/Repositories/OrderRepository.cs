@@ -39,4 +39,10 @@ public class OrderRepository : IOrderRepository
     {
         return await _context.Orders.FindAsync(orderId);
     }
+    public async Task<List<Order>> GetByUserIdAsync(Guid userId)
+{
+    return await _context.Orders
+        .Where(x => x.UserId == userId)
+        .ToListAsync();
+}
 }

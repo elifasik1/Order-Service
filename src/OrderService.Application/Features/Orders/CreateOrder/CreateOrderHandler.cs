@@ -4,7 +4,7 @@ using OrderService.Application.Interfaces;
 
 public class CreateOrderHandler
 {
-    public async Task<CreateOrderResponse> Handle(CreateOrderRequest request)
+    public async Task<CreateOrderResponse> Handle(Guid userId, CreateOrderRequest request)
     {
         const decimal productPrice = 100;
         decimal totalPrice =request.Quantity * productPrice;
@@ -17,10 +17,10 @@ public class CreateOrderHandler
     request.Address,
     request.ProductID,
     request.Quantity,
-    totalPrice);
+    totalPrice,
+    userId);
 
 
-            
          await _orderRepository.AddAsync(order);  // ← Yeni eklediğimiz satır    
          await _orderRepository.SaveChangesAsync();   // <-- BUNU EKLE
         return new CreateOrderResponse

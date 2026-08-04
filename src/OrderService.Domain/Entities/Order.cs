@@ -10,7 +10,8 @@ namespace Domain.Entities
     string address,
     int productId,
     int quantity,
-    decimal totalPrice)
+    decimal totalPrice,
+    Guid userId)
 {
     Id = Guid.NewGuid();
     CustomerName = customerName;
@@ -22,6 +23,7 @@ namespace Domain.Entities
     TotalPrice = totalPrice;
     Status = OrderStatus.Pending;
     CreatedAt = DateTime.UtcNow;
+    UserId = userId;
 }
 public void Update(
     string customerName,
@@ -51,6 +53,10 @@ public string PhoneNumber { get; private set; }
 public string Address { get; private set; }
 public int ProductId { get; private set; }
 public int Quantity { get; private set; }
+
+public Guid UserId { get; private set; }
+
+public User User { get; private set; } = null!;
         // Status güncellemesi için Domain metodu (Business Logic)
         public void UpdateStatus(OrderStatus newStatus)
         {
