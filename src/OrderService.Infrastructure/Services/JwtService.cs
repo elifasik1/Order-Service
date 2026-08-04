@@ -26,11 +26,12 @@ public class JwtService : IJwtService
     var key = new SymmetricSecurityKey(keyBytes);
     var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
     var claims = new List<Claim>
-    {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-        new Claim(ClaimTypes.Role, user.UserRole.ToString())
-    };
+{
+    new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+    new Claim(JwtRegisteredClaimNames.Email, user.Email),
+    new Claim(ClaimTypes.Role, user.UserRole.ToString())
+};
     var token = new JwtSecurityToken(
         issuer: _jwtSettings.Issuer,
         audience: _jwtSettings.Audience,

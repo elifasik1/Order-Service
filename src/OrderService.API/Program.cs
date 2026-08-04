@@ -12,6 +12,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using OrderService.Application.Features.Auth.Register;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
@@ -90,7 +92,17 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+
+    options.AddPolicy("UserOrAdmin", policy =>
+        policy.RequireRole("Admin", "User"));
+
+    options.AddPolicy("CustomerOnly", policy =>
+        policy.RequireRole("Customer"));
+});
 builder.Services.AddScoped<LoginHandler>();
 builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<RegisterValidator>();
@@ -126,20 +138,23 @@ app.MapPost("/orders",
 async (CreateOrderRequest request, CreateOrderValidator validator, CreateOrderHandler handler) =>
 {
     var result = validator.Validate(request);
+
     if (!result.IsValid)
-    {
         return Results.BadRequest(result.Errors);
-    }
-     var response = await handler.Handle(request);
-     return Results.Ok(response);
-});
+
+    var response = await handler.Handle(request);
+
+    return Results.Ok(response);
+})
+.RequireAuthorization();
 
 app.MapGet("/orders",
 async (GetOrdersHandler handler) =>
 {
     var response = await handler.Handle();
     return Results.Ok(response);
-});
+})
+.RequireAuthorization();
 
 app.MapPut("/orders/{id:guid}",
 async (
@@ -148,12 +163,13 @@ async (
     UpdateOrderHandler handler,
     UpdateOrderValidator validator) =>
 {
-   var result = validator.Validate(request);
+    var result = validator.Validate(request);
 
-if (!result.IsValid)
-{
-    return Results.BadRequest(result.Errors);
-}
+    if (!result.IsValid)
+    {
+        return Results.BadRequest(result.Errors);
+    }
+
     var response = await handler.Handle(id, request);
 
     if (response.Message == "Sipariş bulunamadı.")
@@ -162,7 +178,9 @@ if (!result.IsValid)
     }
 
     return Results.Ok(response);
-});
+})
+.RequireAuthorization("UserOrAdmin");
+
 app.MapDelete("/orders/{id:guid}",
 async (Guid id, DeleteOrderHandler handler) =>
 {
@@ -173,14 +191,20 @@ async (Guid id, DeleteOrderHandler handler) =>
     return Results.NotFound(response);
 }
 
+
 return Results.Ok(response);
-});
+})
+.RequireAuthorization("AdminOnly");
+
+
 app.MapPost("/auth/login",
 async (LoginRequest request, LoginHandler handler) =>
 {
     var response = await handler.Handle(request);
     return Results.Ok(response);
 });
+
+
 
 app.MapPost("/auth/register",
 async (RegisterRequest request, RegisterValidator validator, RegisterHandler handler) =>
@@ -193,11 +217,28 @@ async (RegisterRequest request, RegisterValidator validator, RegisterHandler han
     var response = await handler.Handle(request);
     return Results.Ok(response);
 });
+
+
 app.MapPost("/auth/refresh",
 async (RefreshRequest request, RefreshHandler handler) =>
 {
     var response = await handler.Handle(request);
     return Results.Ok(response);
 });
+
+app.MapGet("/me", (HttpContext context) =>
+{
+    var userId = context.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    var email = context.User.FindFirst(ClaimTypes.Email)?.Value;
+    var role = context.User.FindFirst(ClaimTypes.Role)?.Value;
+
+    return Results.Ok(new
+    {
+        UserId = userId,
+        Email = email,
+        Role = role
+    });
+})
+.RequireAuthorization();
 
 app.Run();
