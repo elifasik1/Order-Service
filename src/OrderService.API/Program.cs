@@ -17,6 +17,7 @@ using System.Security.Claims;
 using OrderService.API.Extensions;
 using OrderService.Application.Features.Orders.GetMyOrders;
 using OrderService.API.Middleware;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -76,6 +77,7 @@ builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<RefreshHandler>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<MyOrdersHandler>();
+builder.Services.AddScoped<GetPagedOrdersHandler>();
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
     ?? throw new InvalidOperationException("JWT settings not found.");
 
@@ -182,18 +184,16 @@ return Results.Ok(response);
 .RequireAuthorization("AdminOnly");
 
 
-app.MapGet("/orders/my",
+app.MapGet("/orders",
 async (
-    HttpContext context,
-    MyOrdersHandler handler) =>
+    [AsParameters] GetPagedOrdersRequest request,
+    GetPagedOrdersHandler handler) =>
 {
-    var userId = context.User.GetUserId();
-
-    var response = await handler.Handle(userId);
+    var response = await handler.Handle(request);
 
     return Results.Ok(response);
 })
-.RequireAuthorization("UserOrAdmin");
+.RequireAuthorization();
 
 
 app.MapPost("/auth/login",

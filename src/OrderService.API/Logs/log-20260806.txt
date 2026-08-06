@@ -28,3 +28,29 @@ System.UnauthorizedAccessException: Invalid email or password.
    at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
 2026-08-06 16:11:33.655 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 401 null application/problem+json 1121.3806ms
 2026-08-06 16:13:34.005 +03:00 [INF] Application is shutting down...
+2026-08-06 16:29:39.122 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-06 16:29:39.268 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-06 16:29:39.270 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-06 16:29:39.271 +03:00 [INF] Hosting environment: Development
+2026-08-06 16:29:39.272 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-06 16:29:43.413 +03:00 [INF] Application is shutting down...
+2026-08-06 16:30:02.436 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-06 16:30:02.581 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-06 16:30:02.583 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-06 16:30:02.584 +03:00 [INF] Hosting environment: Development
+2026-08-06 16:30:02.584 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-06 16:30:25.651 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-06 16:30:25.770 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 120.8667ms
+2026-08-06 16:30:25.794 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-06 16:30:25.811 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 17.5782ms
+2026-08-06 16:30:25.890 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-06 16:30:25.891 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-06 16:30:25.896 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.2874ms
+2026-08-06 16:30:25.903 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-06 16:30:26.011 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 121.3729ms
+2026-08-06 16:31:01.008 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=2 - null null
+2026-08-06 16:31:01.047 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-06 16:31:01.052 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-06 16:31:01.054 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=2 - 401 0 null 45.1735ms
+2026-08-06 16:31:22.960 +03:00 [INF] Application is shutting down...

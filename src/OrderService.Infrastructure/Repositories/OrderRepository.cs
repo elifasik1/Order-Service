@@ -45,4 +45,16 @@ public class OrderRepository : IOrderRepository
         .Where(x => x.UserId == userId)
         .ToListAsync();
 }
+
+   public async Task<List<Order>> GetPagedAsync(int page, int pageSize)
+{
+    return await _context.Orders
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToListAsync();
+}
+public async Task<int> CountAsync()
+{
+    return await _context.Orders.CountAsync();
+}
 }

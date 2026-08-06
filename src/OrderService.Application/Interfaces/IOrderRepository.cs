@@ -12,6 +12,7 @@ public interface IOrderRepository
     Task SaveChangesAsync();
     public void Delete(Order order);
     Task<List<Order>> GetByUserIdAsync(Guid userId);
-    
+    Task<List<Order>> GetPagedAsync(int page, int pageSize);
+    Task<int> CountAsync();
 
 }
