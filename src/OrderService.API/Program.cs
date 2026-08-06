@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using OrderService.API.Extensions;
 using OrderService.Application.Features.Orders.GetMyOrders;
+using OrderService.API.Middleware;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
@@ -109,6 +110,7 @@ builder.Services.AddScoped<LoginHandler>();
 builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<RegisterValidator>();
 var app = builder.Build();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
