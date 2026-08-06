@@ -1,5 +1,6 @@
 
 using System.Text.Json;
+using Serilog;
 using OrderService.API.DTOs;
 namespace OrderService.API.Middleware;
 
@@ -27,6 +28,7 @@ private static async Task HandleExceptionAsync(
     HttpContext context,
     Exception ex)
 {
+     Log.Error(ex, ex.Message);
     context.Response.ContentType = "application/problem+json";
 
     var statusCode = ex switch

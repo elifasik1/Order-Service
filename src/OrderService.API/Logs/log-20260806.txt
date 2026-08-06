@@ -1,0 +1,30 @@
+2026-08-06 16:11:26.006 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-06 16:11:26.144 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-06 16:11:26.146 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-06 16:11:26.147 +03:00 [INF] Hosting environment: Development
+2026-08-06 16:11:26.148 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-06 16:11:32.536 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 47
+2026-08-06 16:11:32.608 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-06 16:11:32.610 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-06 16:11:33.597 +03:00 [INF] Executed DbCommand (53ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-06 16:11:33.616 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-06 16:11:33.619 +03:00 [ERR] Invalid email or password.
+System.UnauthorizedAccessException: Invalid email or password.
+   at OrderService.Application.Features.Auth.Login.LoginHandler.Handle(LoginRequest request) in C:\Users\elifa\Desktop\OrderService\src\OrderService.Application\Features\Auth\Login\LoginHandler.cs:line 23
+   at Program.<>c.<<<Main>$>b__0_9>d.MoveNext() in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Program.cs:line 202
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.ExecuteTaskResult[T](Task`1 task, HttpContext httpContext)
+   at Microsoft.AspNetCore.Http.RequestDelegateFactory.<>c__DisplayClass102_2.<<HandleRequestBodyAndCompileRequestDelegateForJson>b__2>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
+2026-08-06 16:11:33.655 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 401 null application/problem+json 1121.3806ms
+2026-08-06 16:13:34.005 +03:00 [INF] Application is shutting down...

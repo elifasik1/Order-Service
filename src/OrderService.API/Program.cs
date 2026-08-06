@@ -17,7 +17,15 @@ using System.Security.Claims;
 using OrderService.API.Extensions;
 using OrderService.Application.Features.Orders.GetMyOrders;
 using OrderService.API.Middleware;
+using Serilog;
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File(
+        "Logs/log-.txt",
+        rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog();
 builder.Services.AddEndpointsApiExplorer();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
