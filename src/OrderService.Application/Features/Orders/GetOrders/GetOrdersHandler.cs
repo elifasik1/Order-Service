@@ -4,11 +4,15 @@ using OrderService.Application.Interfaces;
 public class GetOrdersHandler
 {
     private readonly IOrderRepository _orderRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     // Constructor
-    public GetOrdersHandler(IOrderRepository orderRepository)
+    public GetOrdersHandler(
+        IOrderRepository orderRepository,
+        IUnitOfWork unitOfWork)
     {
         _orderRepository = orderRepository;
+        _unitOfWork = unitOfWork;
     }
 
     // Metot

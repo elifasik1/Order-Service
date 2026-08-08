@@ -22,7 +22,7 @@ public class CreateOrderHandler
 
 
          await _orderRepository.AddAsync(order);  // ← Yeni eklediğimiz satır    
-         await _orderRepository.SaveChangesAsync();   // <-- BUNU EKLE
+         await _unitOfWork.SaveChangesAsync();  // <-- BUNU EKLE
         return new CreateOrderResponse
         {
              
@@ -36,9 +36,14 @@ public class CreateOrderHandler
         
     }
      private readonly IOrderRepository _orderRepository;
+     private readonly IUnitOfWork _unitOfWork;
 
-public CreateOrderHandler(IOrderRepository orderRepository)
+
+public CreateOrderHandler(
+    IOrderRepository orderRepository,
+    IUnitOfWork unitOfWork)
 {
     _orderRepository = orderRepository;
+    _unitOfWork = unitOfWork;
 }
 }

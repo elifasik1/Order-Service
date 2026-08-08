@@ -3,9 +3,14 @@ using OrderService.Application.Interfaces;
 public class DeleteOrderHandler
 {
     private readonly IOrderRepository _orderRepository;
-    public DeleteOrderHandler(IOrderRepository orderRepository)
+    private readonly IUnitOfWork _unitOfWork;
+
+    public DeleteOrderHandler(
+        IOrderRepository orderRepository,
+        IUnitOfWork unitOfWork)
     {
         _orderRepository = orderRepository;
+        _unitOfWork = unitOfWork;
     }
     public async Task<DeleteOrderResponse> Handle(Guid id)
     {
@@ -19,7 +24,7 @@ public class DeleteOrderHandler
             };
         }
         _orderRepository.Delete(order);
-        await _orderRepository.SaveChangesAsync();
+await _unitOfWork.SaveChangesAsync();
         return new DeleteOrderResponse
         {
              Success = true,

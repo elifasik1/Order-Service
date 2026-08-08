@@ -5,10 +5,15 @@ using OrderService.Application.Interfaces;
 public class UpdateOrderHandler
 {
     private readonly IOrderRepository _orderRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-public UpdateOrderHandler(IOrderRepository orderRepository)
+
+public UpdateOrderHandler(
+    IOrderRepository orderRepository,
+    IUnitOfWork unitOfWork)
 {
     _orderRepository = orderRepository;
+    _unitOfWork = unitOfWork;
 }
 public async Task<UpdateOrderResponse> Handle
 (Guid id , UpdateOrderRequest request)
@@ -32,7 +37,7 @@ order.Update(
     request.ProductID,
     request.Quantity,
     totalPrice);
-    await _orderRepository.SaveChangesAsync();
+    await _unitOfWork.SaveChangesAsync();
 
     return new UpdateOrderResponse
     {

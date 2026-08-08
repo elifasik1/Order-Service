@@ -3,3 +3,54 @@
 2026-08-08 17:55:48.482 +03:00 [INF] Application started. Press Ctrl+C to shut down.
 2026-08-08 17:55:48.483 +03:00 [INF] Hosting environment: Development
 2026-08-08 17:55:48.484 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-08 17:56:04.862 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-08 17:56:04.958 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 96.8949ms
+2026-08-08 17:56:05.158 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-08 17:56:05.171 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-08 17:56:05.268 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 110.1956ms
+2026-08-08 17:57:38.605 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-08 17:57:38.676 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-08 17:57:38.680 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-08 17:57:39.962 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-08 17:57:40.202 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-08 17:57:40.220 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 17:57:40.225 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-08 17:57:40.230 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-08 17:57:40.239 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 1633.7737ms
+2026-08-08 17:58:19.159 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 162
+2026-08-08 17:58:19.211 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-08 17:58:19.366 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Decimal), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "Address", "CreatedAt", "CustomerName", "Email", "PhoneNumber", "ProductId", "Quantity", "Status", "TotalPrice", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-08-08 17:58:19.371 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 17:58:19.386 +03:00 [INF] Writing value of type 'CreateOrderResponse' as Json.
+2026-08-08 17:58:19.393 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-08 17:58:19.396 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 200 null application/json; charset=utf-8 236.9654ms
+2026-08-08 17:58:34.070 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-08 17:58:34.078 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-08 17:58:34.106 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-08 17:58:34.109 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-08 17:58:34.118 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-08 17:58:34.154 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-08 17:58:34.159 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 17:58:34.175 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-08 17:58:34.179 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-08 17:58:34.182 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 111.5594ms
+2026-08-08 17:58:42.404 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-08 17:58:42.410 +03:00 [INF] Executing endpoint 'HTTP: GET /me'
+2026-08-08 17:58:42.412 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 17:58:42.415 +03:00 [INF] Writing value of type '<>f__AnonymousType1`4' as Json.
+2026-08-08 17:58:42.417 +03:00 [INF] Executed endpoint 'HTTP: GET /me'
+2026-08-08 17:58:42.419 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 200 null application/json; charset=utf-8 14.9184ms
+2026-08-08 18:17:41.728 +03:00 [INF] Application is shutting down...
