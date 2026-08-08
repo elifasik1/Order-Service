@@ -7,38 +7,20 @@ namespace OrderService.Infrastructure.Repositories;
 
 
 
-public class OrderRepository : IOrderRepository
+public class OrderRepository : Repository<Order>, IOrderRepository{
+    
+   public OrderRepository(ApplicationDbContext context)
+    : base(context)
 {
-    private readonly ApplicationDbContext _context;
-
-    public OrderRepository(ApplicationDbContext context)
-    {
-         _context = context;
-    }
-    public async Task AddAsync(Order order)
-{
-   await _context.Orders.AddAsync(order);
 }
 
-    public void Delete(Order order)
-    {
-        _context.Orders.Remove(order);
-    }
 
-    public async Task<List<Order>> GetAllAsync()
-{
-    return await _context.Orders.ToListAsync();
-}
 
     public async Task SaveChangesAsync()
     {
          await _context.SaveChangesAsync();
     }
 
-    async Task<Order?> IOrderRepository.FindByIdAsync(Guid orderId)
-    {
-        return await _context.Orders.FindAsync(orderId);
-    }
     public async Task<List<Order>> GetByUserIdAsync(Guid userId)
 {
     return await _context.Orders

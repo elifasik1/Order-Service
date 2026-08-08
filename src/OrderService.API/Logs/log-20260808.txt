@@ -1,0 +1,5 @@
+2026-08-08 17:55:48.263 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-08 17:55:48.479 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-08 17:55:48.482 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-08 17:55:48.483 +03:00 [INF] Hosting environment: Development
+2026-08-08 17:55:48.484 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
