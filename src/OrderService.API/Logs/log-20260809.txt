@@ -1,0 +1,399 @@
+2026-08-09 12:55:03.253 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-09 12:55:03.414 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-09 12:55:03.416 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-09 12:55:03.417 +03:00 [INF] Hosting environment: Development
+2026-08-09 12:55:03.418 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-09 12:55:40.931 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-09 12:55:41.009 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 79.8298ms
+2026-08-09 12:55:41.132 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-09 12:55:41.144 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-09 12:55:41.247 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 115.5785ms
+2026-08-09 12:55:55.660 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-09 12:55:55.740 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 79.7306ms
+2026-08-09 12:55:55.766 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-09 12:55:55.771 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 4.7356ms
+2026-08-09 12:55:55.854 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-09 12:55:55.855 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-09 12:55:55.860 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.9483ms
+2026-08-09 12:55:55.862 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 8.2894ms
+2026-08-09 12:55:56.638 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-09 12:55:56.641 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 3.3437ms
+2026-08-09 12:55:56.657 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-09 12:55:56.660 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 2.7131ms
+2026-08-09 12:55:56.706 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-09 12:55:56.708 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-09 12:55:56.711 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 3.4892ms
+2026-08-09 12:55:56.711 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 5.7285ms
+2026-08-09 12:56:28.368 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 12:56:28.430 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-09 12:56:28.433 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 12:56:29.593 +03:00 [INF] Executed DbCommand (43ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 12:56:29.830 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 12:56:29.845 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 12:56:29.849 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 12:56:29.853 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 12:56:29.863 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 1494.9504ms
+2026-08-09 12:57:41.266 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 162
+2026-08-09 12:57:41.312 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 12:57:41.323 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 12:57:41.332 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin|User)
+2026-08-09 12:57:41.339 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 12:57:41.340 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 401 0 null 74.0106ms
+2026-08-09 12:59:18.798 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-09 12:59:18.801 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 2.8601ms
+2026-08-09 12:59:18.819 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-09 12:59:18.822 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 3.0544ms
+2026-08-09 12:59:18.909 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-09 12:59:18.912 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-09 12:59:18.914 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 2.6502ms
+2026-08-09 12:59:18.915 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 5.9782ms
+2026-08-09 12:59:59.767 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 12:59:59.772 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 12:59:59.830 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 12:59:59.838 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 12:59:59.841 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 12:59:59.842 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 12:59:59.843 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 12:59:59.844 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 76.6946ms
+2026-08-09 13:00:32.512 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:00:32.515 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:00:32.518 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:00:32.522 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:00:32.524 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:00:32.525 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 13.4232ms
+2026-08-09 13:01:42.985 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:01:42.988 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:01:42.991 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:01:42.993 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:01:43.026 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:01:43.033 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:01:43.035 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:01:43.036 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:01:43.038 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:01:43.039 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 53.1762ms
+2026-08-09 13:02:05.480 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:02:05.484 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:05.487 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:05.489 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:02:05.491 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:02:05.492 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 11.3218ms
+2026-08-09 13:02:06.458 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:02:06.462 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:06.465 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:06.466 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:02:06.467 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:02:06.468 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 9.7928ms
+2026-08-09 13:02:06.641 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:02:06.644 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:06.647 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:06.648 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:02:06.649 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:02:06.650 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 8.1332ms
+2026-08-09 13:02:06.797 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:02:06.800 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:06.802 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:06.803 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:02:06.804 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:02:06.805 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 8.452ms
+2026-08-09 13:02:08.871 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:02:08.874 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:08.876 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:08.877 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:08.881 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:02:08.887 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:02:08.890 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:02:08.890 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:02:08.891 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:08.892 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 21.9237ms
+2026-08-09 13:02:09.236 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:02:09.239 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:09.242 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:09.243 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.247 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:02:09.254 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:02:09.257 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:02:09.258 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:02:09.259 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.260 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 24.0627ms
+2026-08-09 13:02:09.396 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:02:09.399 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:09.403 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:09.404 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.407 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:02:09.413 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:02:09.415 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:02:09.416 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:02:09.417 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.419 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 22.995ms
+2026-08-09 13:02:09.564 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:02:09.567 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:09.570 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:09.571 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.576 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:02:09.580 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:02:09.583 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:02:09.584 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:02:09.585 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:09.586 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 22.0381ms
+2026-08-09 13:02:14.937 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-09 13:02:14.940 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 3.6433ms
+2026-08-09 13:02:14.962 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-09 13:02:14.964 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 2.6754ms
+2026-08-09 13:02:15.025 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-09 13:02:15.026 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-09 13:02:15.030 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 4.9666ms
+2026-08-09 13:02:15.031 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.5409ms
+2026-08-09 13:02:20.050 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-09 13:02:20.052 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:20.056 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-09 13:02:20.062 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-09 13:02:20.064 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:02:20.065 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-09 13:02:20.067 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-09 13:02:20.068 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 17.9385ms
+2026-08-09 13:02:37.799 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:02:37.802 +03:00 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignature(JsonWebToken jwtToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateSignatureAndIssuerSecurityKey(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ValidateJWSAsync(JsonWebToken jsonWebToken, TokenValidationParameters validationParameters, BaseConfiguration configuration)
+2026-08-09 13:02:37.805 +03:00 [INF] Bearer was not authenticated. Failure message: IDX10517: Signature validation failed. The token's kid is missing. Keys tried: 'Microsoft.IdentityModel.Tokens.SymmetricSecurityKey, KeyId: '', InternalId: 'HJVWedRM5WAH-lCmI8pDq9H0QlXIagvgFpnlWkp1WNY'. , KeyId: \r\n'.
+Number of keys in TokenValidationParameters: '1'. 
+Number of keys in Configuration: '0'.
+Exceptions caught:
+ '[PII of type 'System.Text.StringBuilder' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'.
+token: '[PII of type 'Microsoft.IdentityModel.JsonWebTokens.JsonWebToken' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]'. See https://aka.ms/IDX10503 for details.
+2026-08-09 13:02:37.806 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-09 13:02:37.807 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-09 13:02:37.808 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 401 0 null 8.896ms
+2026-08-09 13:03:27.662 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-09 13:03:27.691 +03:00 [INF] Executing endpoint 'HTTP: GET /me'
+2026-08-09 13:03:27.704 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:03:27.714 +03:00 [INF] Writing value of type '<>f__AnonymousType1`4' as Json.
+2026-08-09 13:03:27.718 +03:00 [INF] Executed endpoint 'HTTP: GET /me'
+2026-08-09 13:03:27.721 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 200 null application/json; charset=utf-8 58.888ms
+2026-08-09 13:03:52.690 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 162
+2026-08-09 13:03:52.694 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-09 13:03:52.893 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-08-09 13:03:52.982 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Decimal), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "Address", "CreatedAt", "CustomerName", "Email", "PhoneNumber", "ProductId", "Quantity", "Status", "TotalPrice", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-08-09 13:03:52.994 +03:00 [INF] Setting HTTP status code 200.
+2026-08-09 13:03:53.014 +03:00 [INF] Writing value of type 'CreateOrderResponse' as Json.
+2026-08-09 13:03:53.024 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-09 13:03:53.026 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 200 null application/json; charset=utf-8 336.3903ms
+2026-08-09 13:04:56.294 +03:00 [INF] Application is shutting down...

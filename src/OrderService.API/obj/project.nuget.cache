@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "InA/weYIGpU=",
+  "dgSpecHash": "6J8EXZmSSrU=",
   "success": true,
   "projectFilePath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\elifa\\.nuget\\packages\\automapper\\16.2.0\\automapper.16.2.0.nupkg.sha512",
     "C:\\Users\\elifa\\.nuget\\packages\\fluentvalidation\\8.2.3\\fluentvalidation.8.2.3.nupkg.sha512",
     "C:\\Users\\elifa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\elifa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.10\\microsoft.aspnetcore.authentication.jwtbearer.10.0.10.nupkg.sha512",

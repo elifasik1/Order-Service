@@ -54,3 +54,57 @@ FROM "Orders" AS o
 2026-08-08 17:58:42.417 +03:00 [INF] Executed endpoint 'HTTP: GET /me'
 2026-08-08 17:58:42.419 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 200 null application/json; charset=utf-8 14.9184ms
 2026-08-08 18:17:41.728 +03:00 [INF] Application is shutting down...
+2026-08-08 18:24:41.202 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-08 18:24:41.337 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-08 18:24:41.339 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-08 18:24:41.340 +03:00 [INF] Hosting environment: Development
+2026-08-08 18:24:41.341 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-08 18:24:52.977 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-08 18:24:53.043 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 67.1118ms
+2026-08-08 18:24:53.187 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-08 18:24:53.198 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-08 18:24:53.282 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 95.044ms
+2026-08-08 18:25:54.246 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-08 18:25:54.276 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-08 18:25:54.278 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-08 18:25:55.228 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-08 18:25:55.431 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-08 18:25:55.441 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 18:25:55.444 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-08 18:25:55.448 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-08 18:25:55.456 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 1209.3448ms
+2026-08-08 18:26:18.805 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 162
+2026-08-08 18:26:18.848 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-08 18:26:18.978 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Decimal), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "Address", "CreatedAt", "CustomerName", "Email", "PhoneNumber", "ProductId", "Quantity", "Status", "TotalPrice", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-08-08 18:26:18.981 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 18:26:18.992 +03:00 [INF] Writing value of type 'CreateOrderResponse' as Json.
+2026-08-08 18:26:18.998 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-08 18:26:19.000 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 200 null application/json; charset=utf-8 194.3843ms
+2026-08-08 18:26:37.665 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-08 18:26:37.671 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-08 18:26:37.694 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-08 18:26:37.696 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-08 18:26:37.703 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-08 18:26:37.733 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-08 18:26:37.736 +03:00 [INF] Setting HTTP status code 200.
+2026-08-08 18:26:37.752 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-08 18:26:37.756 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-08 18:26:37.758 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 92.5478ms
+2026-08-08 18:27:52.326 +03:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5110/orders/ceb6ae7e-7bf1-4b51-a298-f5b4bf06fef4 - null null
+2026-08-08 18:27:52.332 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-08-08 18:27:52.336 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-08-08 18:27:52.337 +03:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5110/orders/ceb6ae7e-7bf1-4b51-a298-f5b4bf06fef4 - 403 0 null 10.4499ms

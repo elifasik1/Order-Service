@@ -19,6 +19,8 @@ using OrderService.Application.Features.Orders.GetMyOrders;
 using OrderService.API.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using AutoMapper;
+using OrderService.Application.Mappings;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File(
@@ -62,6 +64,10 @@ builder.Services.AddScoped<CreateOrderHandler>();
 builder.Services.AddScoped<CreateOrderValidator>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<OrderMappingProfile>();
+});
 builder.Services.AddScoped<GetOrdersHandler>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

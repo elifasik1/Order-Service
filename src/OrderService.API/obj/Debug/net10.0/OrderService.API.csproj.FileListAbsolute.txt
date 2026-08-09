@@ -148,3 +148,4 @@ C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\Seril
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\Serilog.Sinks.Console.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\Serilog.Sinks.Debug.dll
 C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\Serilog.Sinks.File.dll
+C:\Users\elifa\Desktop\OrderService\src\OrderService.API\bin\Debug\net10.0\AutoMapper.dll
