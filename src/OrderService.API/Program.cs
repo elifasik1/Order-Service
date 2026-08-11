@@ -277,6 +277,18 @@ app.MapGet("/me", (HttpContext context) =>
     });
 })
 .RequireAuthorization();
+app.MapGet("/orders/my",
+    async (
+        HttpContext context,
+        MyOrdersHandler handler) =>
+    {
+        var userId = context.User.GetUserId();
+
+        var orders = await handler.Handle(userId);
+
+        return Results.Ok(orders);
+    })
+    .RequireAuthorization("UserOrAdmin");
 
 
 

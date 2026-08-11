@@ -1,0 +1,230 @@
+2026-08-12 00:17:25.680 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-12 00:17:25.919 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-12 00:17:25.922 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-12 00:17:25.923 +03:00 [INF] Hosting environment: Development
+2026-08-12 00:17:25.924 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-12 00:17:28.832 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-12 00:17:28.999 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 169.5913ms
+2026-08-12 00:17:29.032 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-12 00:17:29.060 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 29.2573ms
+2026-08-12 00:17:29.130 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-12 00:17:29.133 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-12 00:17:29.142 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 9.0286ms
+2026-08-12 00:17:29.149 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-12 00:17:29.281 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 151.122ms
+2026-08-12 00:18:00.983 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-12 00:18:01.019 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-12 00:18:01.023 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-12 00:18:02.640 +03:00 [INF] Executed DbCommand (70ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-12 00:18:02.949 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-12 00:18:02.968 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:18:02.974 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-12 00:18:02.980 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-12 00:18:02.992 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 2009.1958ms
+2026-08-12 00:18:30.679 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-12 00:18:30.742 +03:00 [INF] Executing endpoint 'HTTP: GET /me'
+2026-08-12 00:18:30.754 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:18:30.763 +03:00 [INF] Writing value of type '<>f__AnonymousType1`4' as Json.
+2026-08-12 00:18:30.768 +03:00 [INF] Executed endpoint 'HTTP: GET /me'
+2026-08-12 00:18:30.771 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 200 null application/json; charset=utf-8 92.2435ms
+2026-08-12 00:18:59.050 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:18:59.060 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:18:59.156 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-12 00:18:59.159 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-12 00:18:59.174 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:18:59.270 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:18:59.277 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:18:59.309 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:18:59.318 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:18:59.321 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 271.4271ms
+2026-08-12 00:20:17.012 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/register - application/json 99
+2026-08-12 00:20:17.017 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/register'
+2026-08-12 00:20:17.106 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-12 00:20:17.122 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?', @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Users" ("Id", "CreatedAt", "Email", "FirstName", "LastName", "PasswordHash", "UserRole", "UserStatus")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2026-08-12 00:20:17.126 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:20:17.130 +03:00 [INF] Writing value of type 'RegisterResponse' as Json.
+2026-08-12 00:20:17.133 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/register'
+2026-08-12 00:20:17.135 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/register - 200 null application/json; charset=utf-8 122.2042ms
+2026-08-12 00:20:45.086 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:20:45.097 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:45.107 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:20:45.115 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:20:45.119 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:20:45.121 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:20:45.124 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:45.126 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 40.2782ms
+2026-08-12 00:20:46.915 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:20:46.926 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:46.935 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:20:46.940 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:20:46.944 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:20:46.946 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:20:46.948 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:46.950 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 35.402ms
+2026-08-12 00:20:47.398 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:20:47.403 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:47.407 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:20:47.412 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:20:47.416 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:20:47.417 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:20:47.420 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:20:47.422 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 23.8103ms
+2026-08-12 00:21:04.953 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/me - null null
+2026-08-12 00:21:04.957 +03:00 [INF] Executing endpoint 'HTTP: GET /me'
+2026-08-12 00:21:04.959 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:21:04.960 +03:00 [INF] Writing value of type '<>f__AnonymousType1`4' as Json.
+2026-08-12 00:21:04.962 +03:00 [INF] Executed endpoint 'HTTP: GET /me'
+2026-08-12 00:21:04.964 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/me - 200 null application/json; charset=utf-8 11.8898ms
+2026-08-12 00:21:13.238 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:21:13.243 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.248 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:21:13.255 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:21:13.258 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:21:13.260 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:21:13.262 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.264 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 26.1025ms
+2026-08-12 00:21:13.666 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:21:13.672 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.677 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:21:13.684 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:21:13.688 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:21:13.690 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:21:13.691 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.693 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 27.284ms
+2026-08-12 00:21:13.861 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:21:13.874 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.880 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:21:13.886 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:21:13.890 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:21:13.892 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:21:13.894 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:13.896 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 35.432ms
+2026-08-12 00:21:14.015 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - null null
+2026-08-12 00:21:14.021 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:14.026 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+LIMIT @p1 OFFSET @p
+2026-08-12 00:21:14.032 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+2026-08-12 00:21:14.035 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:21:14.037 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-12 00:21:14.039 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-12 00:21:14.042 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders?Page=1&PageSize=10 - 200 null application/json; charset=utf-8 25.9874ms
+2026-08-12 00:22:34.897 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-12 00:22:34.911 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 13.7244ms
+2026-08-12 00:22:35.086 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-12 00:22:35.091 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 5.2329ms
+2026-08-12 00:22:35.254 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-12 00:22:35.260 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-12 00:22:35.265 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.925ms
+2026-08-12 00:22:35.267 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.2613ms
+2026-08-12 00:22:39.548 +03:00 [INF] Application is shutting down...
+2026-08-12 00:22:45.770 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-12 00:22:45.930 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-12 00:22:45.933 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-12 00:22:45.934 +03:00 [INF] Hosting environment: Development
+2026-08-12 00:22:45.937 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-12 00:22:52.477 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-12 00:22:52.667 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 191.1871ms
+2026-08-12 00:22:52.696 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-12 00:22:52.721 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 25.8208ms
+2026-08-12 00:22:52.796 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-12 00:22:52.798 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-12 00:22:52.807 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 8.5985ms
+2026-08-12 00:22:52.822 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-12 00:22:52.985 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 189.0335ms
+2026-08-12 00:23:16.152 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-12 00:23:16.196 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-12 00:23:16.201 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-12 00:23:18.018 +03:00 [INF] Executed DbCommand (74ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-12 00:23:18.360 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-12 00:23:18.381 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:23:18.387 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-12 00:23:18.393 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-12 00:23:18.408 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 2255.9978ms
+2026-08-12 00:23:33.286 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-12 00:23:33.355 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-12 00:23:33.469 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+WHERE o."UserId" = @userId
+2026-08-12 00:23:33.474 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:23:33.511 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-12 00:23:33.514 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-12 00:23:33.517 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 230.9102ms
+2026-08-12 00:24:16.065 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 173
+2026-08-12 00:24:16.076 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-12 00:24:16.257 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-08-12 00:24:16.334 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Decimal), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "Address", "CreatedAt", "CustomerName", "Email", "PhoneNumber", "ProductId", "Quantity", "Status", "TotalPrice", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-08-12 00:24:16.348 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:24:16.354 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-12 00:24:16.365 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-12 00:24:16.367 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 200 null application/json; charset=utf-8 302.2315ms
+2026-08-12 00:24:20.992 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-12 00:24:21.000 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-12 00:24:21.012 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UserId"
+FROM "Orders" AS o
+WHERE o."UserId" = @userId
+2026-08-12 00:24:21.023 +03:00 [INF] Setting HTTP status code 200.
+2026-08-12 00:24:21.026 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-12 00:24:21.031 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-12 00:24:21.034 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 41.6462ms
+2026-08-12 00:25:01.391 +03:00 [INF] Application is shutting down...
