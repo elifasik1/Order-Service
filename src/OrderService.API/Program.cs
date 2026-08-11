@@ -157,40 +157,69 @@ app.MapGet("/health", () =>
 .WithName("GetHealth");
 
 app.MapPost("/orders",
-async (
-    HttpContext context,
-    CreateOrderRequest request,
-    CreateOrderValidator validator,
-    CreateOrderHandler handler) =>
-{
-    var result = validator.Validate(request);
+    async (
+        HttpContext context,
+        CreateOrderRequest request,
+        CreateOrderValidator validator,
+        CreateOrderHandler handler) =>
+    {
+        var result = validator.Validate(request);
 
-    if (!result.IsValid)
-        return Results.BadRequest(result.Errors);
+        if (!result.IsValid)
+            return Results.BadRequest(result.Errors);
 
-    var userId = context.User.GetUserId();
+        var userId = context.User.GetUserId();
 
-    var response = await handler.Handle(userId, request);
+        var response = await handler.Handle(userId, request);
 
-    return Results.Ok(response);
-})
-.RequireAuthorization("UserOrAdmin");
+        if (!response.IsSuccess)
+        {
+            return Results.BadRequest(response);
+        }
+
+        return Results.Ok(response);
+    })
+    .RequireAuthorization("UserOrAdmin");
 
 app.MapDelete("/orders/{id:guid}",
-async (Guid id, DeleteOrderHandler handler) =>
-{
-    var response = await handler.Handle(id);
+    async (
+        Guid id,
+        DeleteOrderHandler handler) =>
+    {
+        var response = await handler.Handle(id);
 
-    if (!response.Success)
-{
-    return Results.NotFound(response);
-}
+        if (!response.IsSuccess)
+        {
+            return Results.BadRequest(response);
+        }
+
+        return Results.Ok(response);
+    })
+    .RequireAuthorization("AdminOnly");
 
 
-return Results.Ok(response);
-})
-.RequireAuthorization("AdminOnly");
+app.MapPut("/orders/{id:guid}",
+    async (
+        Guid id,
+        UpdateOrderRequest request,
+        UpdateOrderValidator validator,
+        UpdateOrderHandler handler) =>
+    {
+        var result = validator.Validate(request);
 
+        if (!result.IsValid)
+            return Results.BadRequest(result.Errors);
+
+        var response = await handler.Handle(id, request);
+
+        if (!response.IsSuccess)
+        {
+            return Results.BadRequest(response);
+        }
+
+        return Results.Ok(response);
+    })
+    .RequireAuthorization("AdminOnly");
 
 app.MapGet("/orders",
 async (

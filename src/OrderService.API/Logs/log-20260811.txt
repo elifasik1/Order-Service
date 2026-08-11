@@ -1,0 +1,76 @@
+2026-08-11 23:53:43.727 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-11 23:53:44.039 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-11 23:53:44.043 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-11 23:53:44.044 +03:00 [INF] Hosting environment: Development
+2026-08-11 23:53:44.046 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-11 23:54:06.655 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-bundle.js - null null
+2026-08-11 23:54:06.655 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui.css - null null
+2026-08-11 23:54:06.655 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-11 23:54:06.811 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 158.7862ms
+2026-08-11 23:54:06.811 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-bundle.js - 304 null null 158.7885ms
+2026-08-11 23:54:06.811 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui.css - 304 null null 158.7759ms
+2026-08-11 23:54:06.824 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-standalone-preset.js - null null
+2026-08-11 23:54:06.827 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.js - null null
+2026-08-11 23:54:06.854 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-standalone-preset.js - 304 null null 29.4495ms
+2026-08-11 23:54:06.951 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.js - 200 null application/javascript;charset=utf-8 123.7648ms
+2026-08-11 23:54:07.046 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-11 23:54:07.064 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-11 23:54:07.262 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 215.6803ms
+2026-08-11 23:54:17.134 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/health - null null
+2026-08-11 23:54:17.271 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-11 23:54:17.276 +03:00 [INF] Executing endpoint 'HTTP: GET /health'
+2026-08-11 23:54:17.286 +03:00 [INF] Executed endpoint 'HTTP: GET /health'
+2026-08-11 23:54:17.289 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/health - 200 null application/json; charset=utf-8 154.5467ms
+2026-08-11 23:54:17.412 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/favicon.ico - null null
+2026-08-11 23:54:17.419 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/favicon.ico - 404 0 null 6.995ms
+2026-08-11 23:54:17.426 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5110/favicon.ico, Response status code: 404
+2026-08-11 23:54:21.859 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-11 23:54:21.867 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 8.5207ms
+2026-08-11 23:54:21.952 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-11 23:54:21.961 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 8.3041ms
+2026-08-11 23:54:21.969 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-11 23:54:21.973 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.6598ms
+2026-08-11 23:54:23.561 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-11 23:54:23.567 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 6.2107ms
+2026-08-11 23:54:23.598 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-11 23:54:23.603 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 4.978ms
+2026-08-11 23:54:23.676 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-11 23:54:23.682 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-11 23:54:23.687 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.7063ms
+2026-08-11 23:54:23.687 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 10.5821ms
+2026-08-11 23:55:09.425 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-11 23:55:09.444 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-11 23:55:11.150 +03:00 [INF] Executed DbCommand (70ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-11 23:55:11.493 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-11 23:55:11.512 +03:00 [INF] Setting HTTP status code 200.
+2026-08-11 23:55:11.518 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-11 23:55:11.521 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-11 23:55:11.536 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 2111.0185ms
+2026-08-11 23:56:00.396 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 154
+2026-08-11 23:56:00.476 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-11 23:56:00.729 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software AutoMapper. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-08-11 23:56:00.746 +03:00 [INF] Setting HTTP status code 400.
+2026-08-11 23:56:00.761 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-11 23:56:00.774 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-11 23:56:00.776 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 400 null application/json; charset=utf-8 380.0568ms
+2026-08-11 23:56:48.498 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/orders - application/json 160
+2026-08-11 23:56:48.505 +03:00 [INF] Executing endpoint 'HTTP: POST /orders'
+2026-08-11 23:56:48.618 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?', @p5='?', @p6='?' (DbType = Int32), @p7='?' (DbType = Int32), @p8='?' (DbType = Int32), @p9='?' (DbType = Decimal), @p10='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Orders" ("Id", "Address", "CreatedAt", "CustomerName", "Email", "PhoneNumber", "ProductId", "Quantity", "Status", "TotalPrice", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+2026-08-11 23:56:48.630 +03:00 [INF] Setting HTTP status code 200.
+2026-08-11 23:56:48.647 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-11 23:56:48.653 +03:00 [INF] Executed endpoint 'HTTP: POST /orders'
+2026-08-11 23:56:48.655 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/orders - 200 null application/json; charset=utf-8 157.2185ms
+2026-08-11 23:57:43.702 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5110/orders/b577f04d-c9ab-42fb-be99-b2f05f62ac0b - application/json 136
+2026-08-11 23:57:43.709 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2026-08-11 23:57:43.712 +03:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2026-08-11 23:57:43.714 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5110/orders/b577f04d-c9ab-42fb-be99-b2f05f62ac0b - 403 0 null 12.3242ms
+2026-08-11 23:58:49.122 +03:00 [INF] Application is shutting down...

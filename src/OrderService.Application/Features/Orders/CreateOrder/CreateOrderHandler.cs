@@ -1,5 +1,6 @@
 using AutoMapper;
 using Domain.Entities;
+using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
 
 public class CreateOrderHandler
@@ -18,7 +19,7 @@ public class CreateOrderHandler
         _mapper = mapper;
     }
 
-    public async Task<CreateOrderResponse> Handle(
+    public async Task<Result<CreateOrderResponse>> Handle(
         Guid userId,
         CreateOrderRequest request)
     {
@@ -41,6 +42,8 @@ public class CreateOrderHandler
 
         var response = _mapper.Map<CreateOrderResponse>(order);
 
-return response;
+        return Result<CreateOrderResponse>.Success(
+            response,
+            "Siparişiniz oluşturuldu.");
     }
 }

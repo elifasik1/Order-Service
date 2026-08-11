@@ -1,3 +1,4 @@
+using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
 
 public class DeleteOrderHandler
@@ -12,24 +13,23 @@ public class DeleteOrderHandler
         _orderRepository = orderRepository;
         _unitOfWork = unitOfWork;
     }
-    public async Task<DeleteOrderResponse> Handle(Guid id)
+
+    public async Task<Result<Guid>> Handle(Guid id)
     {
         var order = await _orderRepository.FindByIdAsync(id);
+
         if (order == null)
         {
-            return new DeleteOrderResponse
-            {
-                 Success = false,
-    Message = "Sipariş bulunamadı."
-            };
+            return Result<Guid>.Failure("Sipariş bulunamadı.");
         }
+
         _orderRepository.Delete(order);
-await _unitOfWork.SaveChangesAsync();
-        return new DeleteOrderResponse
-        {
-             Success = true,
-    Id = order.Id,
-    Message = "Sipariş başarıyla silindi."
-        };
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return Result<Guid>.Success(
+            order.Id,
+            "Sipariş başarıyla silindi."
+        );
     }
 }
