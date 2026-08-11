@@ -1,3 +1,5 @@
+using OrderService.Application.Specifications;
+
 namespace OrderService.Application.Interfaces;
 
 public interface IRepository<T>
@@ -9,4 +11,7 @@ public interface IRepository<T>
     Task<T?> FindByIdAsync(Guid id);
 
     void Delete(T entity);
+
+    Task<List<T>> GetBySpecificationAsync(
+        ISpecification<T> specification);
 }

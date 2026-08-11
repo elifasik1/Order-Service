@@ -12,12 +12,7 @@ public class OrderRepository : Repository<Order>, IOrderRepository
     {
     }
 
-    public async Task<List<Order>> GetByUserIdAsync(Guid userId)
-    {
-        return await _context.Orders
-            .Where(x => x.UserId == userId)
-            .ToListAsync();
-    }
+
 
     public async Task<List<Order>> GetPagedAsync(int page, int pageSize)
     {

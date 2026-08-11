@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Data;
-
+using OrderService.Application.Specifications;
 namespace OrderService.Infrastructure.Repositories;
 
 public class Repository<T> : IRepository<T>
@@ -35,4 +35,17 @@ public class Repository<T> : IRepository<T>
     {
         _dbSet.Remove(entity);
     }
+    public async Task<List<T>> GetBySpecificationAsync(
+    ISpecification<T> specification)
+{
+    var query = _dbSet.AsQueryable();
+
+    if (specification.Criteria != null)
+    {
+        query = query.Where(specification.Criteria);
+    }
+
+    return await query.ToListAsync();
+}
+
 }
