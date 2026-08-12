@@ -1,0 +1,183 @@
+2026-08-13 00:16:16.037 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-13 00:16:16.192 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-13 00:16:16.232 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-08-13 00:16:16.242 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-08-13 00:16:16.244 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-08-13 00:16:16.247 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-13 00:16:16.254 +03:00 [INF] Applying migration '20260812211608_AddOrderConcurrency'.
+2026-08-13 00:16:16.261 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260812211608_AddOrderConcurrency', '10.0.10');
+2026-08-13 00:21:32.923 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-13 00:21:33.061 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-13 00:21:33.064 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-13 00:21:33.065 +03:00 [INF] Hosting environment: Development
+2026-08-13 00:21:33.066 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-13 00:21:50.237 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-13 00:21:50.341 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 104.9169ms
+2026-08-13 00:21:50.362 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-13 00:21:50.377 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 15.4862ms
+2026-08-13 00:21:50.463 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-13 00:21:50.465 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-13 00:21:50.470 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.8202ms
+2026-08-13 00:21:50.474 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-13 00:21:50.567 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 103.9141ms
+2026-08-13 00:21:55.955 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-13 00:21:55.979 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-13 00:21:55.982 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-13 00:21:56.919 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-13 00:21:57.111 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-13 00:21:57.122 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:21:57.126 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-13 00:21:57.130 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-13 00:21:57.137 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 1182.1628ms
+2026-08-13 00:22:17.455 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-13 00:22:17.511 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:22:17.593 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."UserId" = @userId
+2026-08-13 00:22:17.628 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:22:17.650 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-13 00:22:17.656 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:22:17.658 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 202.4834ms
+2026-08-13 00:24:14.833 +03:00 [INF] Application is shutting down...
+2026-08-13 00:27:41.062 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-13 00:27:41.212 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-13 00:27:41.214 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-13 00:27:41.215 +03:00 [INF] Hosting environment: Development
+2026-08-13 00:27:41.216 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-13 00:27:54.766 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - null null
+2026-08-13 00:27:54.868 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - 200 null text/html;charset=utf-8 103.3842ms
+2026-08-13 00:27:54.891 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.css - null null
+2026-08-13 00:27:54.906 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.css - 304 null null 15.5369ms
+2026-08-13 00:27:54.988 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - null null
+2026-08-13 00:27:54.991 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - null null
+2026-08-13 00:27:54.995 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - 304 null null 4.3925ms
+2026-08-13 00:27:55.000 +03:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2026-08-13 00:27:55.097 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 108.1661ms
+2026-08-13 00:28:00.216 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5110/auth/login - application/json 54
+2026-08-13 00:28:00.241 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-13 00:28:00.243 +03:00 [INF] Executing endpoint 'HTTP: POST /auth/login'
+2026-08-13 00:28:01.231 +03:00 [INF] Executed DbCommand (48ms) [Parameters=[@email='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."Id", u."CreatedAt", u."Email", u."FirstName", u."LastName", u."PasswordHash", u."UserRole", u."UserStatus"
+FROM "Users" AS u
+WHERE u."Email" = @email
+LIMIT 2
+2026-08-13 00:28:01.435 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?', @p5='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "ExpiresAt", "RevokedAt", "Token", "UserId")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2026-08-13 00:28:01.447 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:28:01.452 +03:00 [INF] Writing value of type 'LoginResponse' as Json.
+2026-08-13 00:28:01.457 +03:00 [INF] Executed endpoint 'HTTP: POST /auth/login'
+2026-08-13 00:28:01.466 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5110/auth/login - 200 null application/json; charset=utf-8 1250.4642ms
+2026-08-13 00:28:28.908 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-13 00:28:28.963 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:28:29.043 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."UserId" = @userId
+2026-08-13 00:28:29.077 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:28:29.100 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-13 00:28:29.107 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:28:29.110 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 201.4176ms
+2026-08-13 00:29:16.327 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - application/json 197
+2026-08-13 00:29:16.334 +03:00 [INF] Executing endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:29:16.400 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."Id" = @id
+LIMIT 1
+2026-08-13 00:29:16.438 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p4='?' (DbType = Guid), @p0='?', @p1='?' (DbType = Int32), @p2='?' (DbType = Decimal), @p3='?' (DbType = DateTime), @p5='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Orders" SET "CustomerName" = @p0, "Quantity" = @p1, "TotalPrice" = @p2, "UpdatedAt" = @p3
+WHERE "Id" = @p4 AND xmin = @p5
+RETURNING xmin;
+2026-08-13 00:29:16.450 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:29:16.454 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-13 00:29:16.457 +03:00 [INF] Executed endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:29:16.459 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - 200 null application/json; charset=utf-8 131.8759ms
+2026-08-13 00:29:29.911 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-13 00:29:29.917 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:29:29.929 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."UserId" = @userId
+2026-08-13 00:29:29.933 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:29:29.934 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-13 00:29:29.936 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:29:29.938 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 26.7197ms
+2026-08-13 00:30:20.741 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - application/json 197
+2026-08-13 00:30:20.745 +03:00 [INF] Executing endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:30:20.768 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."Id" = @id
+LIMIT 1
+2026-08-13 00:30:20.775 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = Decimal), @p2='?' (DbType = DateTime), @p4='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Orders" SET "Quantity" = @p0, "TotalPrice" = @p1, "UpdatedAt" = @p2
+WHERE "Id" = @p3 AND xmin = @p4
+RETURNING xmin;
+2026-08-13 00:30:20.784 +03:00 [INF] Setting HTTP status code 400.
+2026-08-13 00:30:20.786 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-13 00:30:20.788 +03:00 [INF] Executed endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:30:20.789 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - 400 null application/json; charset=utf-8 48.4106ms
+2026-08-13 00:31:26.121 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - application/json 197
+2026-08-13 00:31:26.125 +03:00 [INF] Executing endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:31:26.160 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."Id" = @id
+LIMIT 1
+2026-08-13 00:31:26.167 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@p3='?' (DbType = Guid), @p0='?' (DbType = Int32), @p1='?' (DbType = Decimal), @p2='?' (DbType = DateTime), @p4='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Orders" SET "Quantity" = @p0, "TotalPrice" = @p1, "UpdatedAt" = @p2
+WHERE "Id" = @p3 AND xmin = @p4
+RETURNING xmin;
+2026-08-13 00:31:26.171 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:31:26.172 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-13 00:31:26.174 +03:00 [INF] Executed endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:31:26.176 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - 200 null application/json; charset=utf-8 54.9646ms
+2026-08-13 00:31:40.935 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5110/orders/my - null null
+2026-08-13 00:31:40.939 +03:00 [INF] Executing endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:31:40.943 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."UserId" = @userId
+2026-08-13 00:31:40.946 +03:00 [INF] Setting HTTP status code 200.
+2026-08-13 00:31:40.948 +03:00 [INF] Writing value of type 'List`1' as Json.
+2026-08-13 00:31:40.950 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
+2026-08-13 00:31:40.951 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 16.072ms
+2026-08-13 00:31:45.755 +03:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - application/json 197
+2026-08-13 00:31:45.760 +03:00 [INF] Executing endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:31:45.767 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted") AND o."Id" = @id
+LIMIT 1
+2026-08-13 00:31:45.772 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?' (DbType = DateTime), @p2='?' (DbType = Object)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Orders" SET "UpdatedAt" = @p0
+WHERE "Id" = @p1 AND xmin = @p2
+RETURNING xmin;
+2026-08-13 00:31:45.775 +03:00 [INF] Setting HTTP status code 400.
+2026-08-13 00:31:45.776 +03:00 [INF] Writing value of type 'Result`1' as Json.
+2026-08-13 00:31:45.777 +03:00 [INF] Executed endpoint 'HTTP: PUT /orders/{id:guid}'
+2026-08-13 00:31:45.779 +03:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5110/orders/e538ce0a-47f6-4f9f-a1e6-8d49b885038e - 400 null application/json; charset=utf-8 23.4321ms
+2026-08-13 00:32:46.663 +03:00 [INF] Application is shutting down...

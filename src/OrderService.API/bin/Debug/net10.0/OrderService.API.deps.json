@@ -749,6 +749,7 @@
         "dependencies": {
           "AutoMapper": "16.2.0",
           "FluentValidation": "8.2.3",
+          "Microsoft.EntityFrameworkCore": "10.0.10",
           "OrderService.Domain": "1.0.0"
         },
         "runtime": {

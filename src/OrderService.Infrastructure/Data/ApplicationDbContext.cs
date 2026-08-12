@@ -10,6 +10,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<User> Users => Set<User>();
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    base.OnModelCreating(modelBuilder);
+
+    modelBuilder.Entity<Order>()
+        .Property(x => x.Version)
+        .IsRowVersion();
+}
     public override async Task<int> SaveChangesAsync(
         CancellationToken cancellationToken = default)
     {
@@ -22,6 +31,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 entry.Entity.MarkAsUpdated();
             }
         }
+        
 
         return await base.SaveChangesAsync(cancellationToken);
     }

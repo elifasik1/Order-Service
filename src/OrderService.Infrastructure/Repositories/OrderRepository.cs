@@ -28,4 +28,10 @@ public class OrderRepository : Repository<Order>, IOrderRepository
     return await _context.Orders
         .CountAsync(x => !x.IsDeleted);
 }
+public void SetOriginalVersion(Order order, uint version)
+{
+    _context.Entry(order)
+        .Property(x => x.Version)
+        .OriginalValue = version;
+}
 }

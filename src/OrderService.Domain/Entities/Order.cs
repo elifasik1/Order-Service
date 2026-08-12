@@ -55,6 +55,7 @@ public void Update(
 {
     UpdatedAt = DateTime.UtcNow;
 }
+public uint Version { get; private set; }
 
 
         public string Email { get; private set; }

@@ -1,6 +1,6 @@
 using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
-
+using Microsoft.EntityFrameworkCore;
 public class UpdateOrderHandler
 {
     private readonly IOrderRepository _orderRepository;
@@ -24,7 +24,9 @@ public class UpdateOrderHandler
         {
             return Result<UpdateOrderResponse>.Failure(
                 "Sipariş bulunamadı.");
+                
         }
+        _orderRepository.SetOriginalVersion(order, request.Version);
 
         const decimal productPrice = 100;
         decimal totalPrice = request.Quantity * productPrice;
@@ -38,7 +40,16 @@ public class UpdateOrderHandler
             request.Quantity,
             totalPrice);
 
-        await _unitOfWork.SaveChangesAsync();
+        try
+{
+    await _unitOfWork.SaveChangesAsync();
+}
+catch (DbUpdateConcurrencyException)
+{
+    return Result<UpdateOrderResponse>.Failure(
+        "Sipariş başka bir kullanıcı tarafından güncellendi. Lütfen siparişi yenileyip tekrar deneyin.");
+}
+
 
         var response = new UpdateOrderResponse
         {

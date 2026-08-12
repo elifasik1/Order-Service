@@ -10,4 +10,5 @@ public class  UpdateOrderRequest
 
     public int ProductID { get; set; } // Kullanıcıdan alınacak
     public int Quantity { get; set; } // Kullanıcıdan alınacak
+    public uint Version { get; set; }
 }
