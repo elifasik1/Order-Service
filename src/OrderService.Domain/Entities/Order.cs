@@ -1,7 +1,9 @@
 using Domain.Enums;
+using Domain.Common;
 namespace Domain.Entities
+
 {
-    public class Order
+    public class Order : ISoftDeletable
     {
        public Order(
     string customerName,
@@ -48,6 +50,13 @@ public void Update(
         public OrderStatus Status { get; private set; }  // Sistem tarafından yönetilecek
         public DateTime CreatedAt { get; private set; }  // Sistem tarafından atanacak
 
+        public DateTime? UpdatedAt { get; private set; }
+        public void MarkAsUpdated()
+{
+    UpdatedAt = DateTime.UtcNow;
+}
+
+
         public string Email { get; private set; }
 public string PhoneNumber { get; private set; }
 public string Address { get; private set; }
@@ -56,7 +65,13 @@ public int Quantity { get; private set; }
 
 public Guid UserId { get; private set; }
 
+public bool IsDeleted { get; private set; }
 public User User { get; private set; } = null!;
+
+public void SoftDelete()
+{
+    IsDeleted = true;
+}
         // Status güncellemesi için Domain metodu (Business Logic)
         public void UpdateStatus(OrderStatus newStatus)
         {

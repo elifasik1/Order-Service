@@ -23,7 +23,7 @@ public class DeleteOrderHandler
             return Result<Guid>.Failure("Sipariş bulunamadı.");
         }
 
-        _orderRepository.Delete(order);
+        order.SoftDelete();
 
         await _unitOfWork.SaveChangesAsync();
 

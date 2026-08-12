@@ -228,3 +228,34 @@ WHERE o."UserId" = @userId
 2026-08-12 00:24:21.031 +03:00 [INF] Executed endpoint 'HTTP: GET /orders/my'
 2026-08-12 00:24:21.034 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5110/orders/my - 200 null application/json; charset=utf-8 41.6462ms
 2026-08-12 00:25:01.391 +03:00 [INF] Application is shutting down...
+2026-08-12 23:26:11.111 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-12 23:26:11.290 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-08-12 23:26:11.352 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" character varying(150) NOT NULL,
+    "ProductVersion" character varying(32) NOT NULL,
+    CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY ("MigrationId")
+);
+2026-08-12 23:26:11.364 +03:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-08-12 23:26:11.368 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+LOCK TABLE "__EFMigrationsHistory" IN ACCESS EXCLUSIVE MODE
+2026-08-12 23:26:11.372 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2026-08-12 23:26:11.383 +03:00 [INF] Applying migration '20260812202552_AddSoftDeleteToOrder'.
+2026-08-12 23:26:11.406 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Orders" ADD "IsDeleted" boolean NOT NULL DEFAULT FALSE;
+2026-08-12 23:26:11.412 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20260812202552_AddSoftDeleteToOrder', '10.0.10');
+2026-08-12 23:26:44.478 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-12 23:26:44.681 +03:00 [INF] Now listening on: http://localhost:5110
+2026-08-12 23:26:44.685 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-12 23:26:44.687 +03:00 [INF] Hosting environment: Development
+2026-08-12 23:26:44.688 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-12 23:28:15.733 +03:00 [INF] Application is shutting down...

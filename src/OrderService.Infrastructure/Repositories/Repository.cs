@@ -2,7 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using OrderService.Application.Interfaces;
 using OrderService.Infrastructure.Data;
 using OrderService.Application.Specifications;
+using Domain.Common;
 namespace OrderService.Infrastructure.Repositories;
+
 
 public class Repository<T> : IRepository<T>
     where T : class
@@ -21,15 +23,32 @@ public class Repository<T> : IRepository<T>
         await _dbSet.AddAsync(entity);
     }
 
-    public async Task<List<T>> GetAllAsync()
+   public async Task<List<T>> GetAllAsync()
+{
+    var query = _dbSet.AsQueryable();
+
+    if (typeof(ISoftDeletable).IsAssignableFrom(typeof(T)))
     {
-        return await _dbSet.ToListAsync();
+        query = query.Where(x =>
+            !EF.Property<bool>(x, nameof(ISoftDeletable.IsDeleted)));
     }
 
+    return await query.ToListAsync();
+}
+
     public async Task<T?> FindByIdAsync(Guid id)
+{
+    var query = _dbSet.AsQueryable();
+
+    if (typeof(ISoftDeletable).IsAssignableFrom(typeof(T)))
     {
-        return await _dbSet.FindAsync(id);
+        query = query.Where(x =>
+            !EF.Property<bool>(x, nameof(ISoftDeletable.IsDeleted)));
     }
+
+    return await query.FirstOrDefaultAsync(
+        x => EF.Property<Guid>(x, "Id") == id);
+}
 
     public void Delete(T entity)
     {
@@ -39,6 +58,12 @@ public class Repository<T> : IRepository<T>
     ISpecification<T> specification)
 {
     var query = _dbSet.AsQueryable();
+
+    if (typeof(ISoftDeletable).IsAssignableFrom(typeof(T)))
+    {
+        query = query.Where(x =>
+            !EF.Property<bool>(x, nameof(ISoftDeletable.IsDeleted)));
+    }
 
     if (specification.Criteria != null)
     {

@@ -14,16 +14,18 @@ public class OrderRepository : Repository<Order>, IOrderRepository
 
 
 
-    public async Task<List<Order>> GetPagedAsync(int page, int pageSize)
-    {
-        return await _context.Orders
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
-    }
+   public async Task<List<Order>> GetPagedAsync(int page, int pageSize)
+{
+    return await _context.Orders
+        .Where(x => !x.IsDeleted)
+        .Skip((page - 1) * pageSize)
+        .Take(pageSize)
+        .ToListAsync();
+}
 
     public async Task<int> CountAsync()
-    {
-        return await _context.Orders.CountAsync();
-    }
+{
+    return await _context.Orders
+        .CountAsync(x => !x.IsDeleted);
+}
 }
