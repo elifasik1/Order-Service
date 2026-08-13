@@ -30,6 +30,7 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHealthChecks();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
@@ -142,19 +143,8 @@ app.UseAuthorization();
 
 app.UseHttpsRedirection();
 
-app.MapGet("/health", () =>
-{
-    var response = new
-    {
-        service = "OrderService",
-        status = "Healthy",
-        timestamp = DateTime.UtcNow,
-        
-    };
-    return response ;
-         
-})
-.WithName("GetHealth");
+app.MapHealthChecks("/health")
+    .WithName("HealthCheck");
 
 app.MapPost("/orders",
     async (
