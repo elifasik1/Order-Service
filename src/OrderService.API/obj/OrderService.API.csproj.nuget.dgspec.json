@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj": {}
+    "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\OrderService.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj": {
+    "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\OrderService.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj",
+        "projectUniqueName": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\OrderService.API.csproj",
         "projectName": "OrderService.API",
-        "projectPath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj",
+        "projectPath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\OrderService.API.csproj",
         "packagesPath": "C:\\Users\\elifa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\obj\\",
+        "outputPath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

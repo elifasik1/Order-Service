@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "lP9a/w7uB9s=",
+  "dgSpecHash": "tEaNEIliVjg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API\\OrderService.API.csproj",
+  "projectFilePath": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\ORderService.API\\OrderService.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\elifa\\.nuget\\packages\\automapper\\16.2.0\\automapper.16.2.0.nupkg.sha512",
     "C:\\Users\\elifa\\.nuget\\packages\\fluentvalidation\\8.2.3\\fluentvalidation.8.2.3.nupkg.sha512",
