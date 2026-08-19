@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using AutoMapper;
 using OrderService.Application.Mappings;
+using OrderService.Application.Features.Orders.CreateOrder;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File(

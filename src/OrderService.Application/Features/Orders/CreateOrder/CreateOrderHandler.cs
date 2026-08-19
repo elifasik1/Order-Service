@@ -3,6 +3,8 @@ using Domain.Entities;
 using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
 
+namespace OrderService.Application.Features.Orders.CreateOrder;
+
 public class CreateOrderHandler
 {
     private readonly IOrderRepository _orderRepository;
