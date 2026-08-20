@@ -112,4 +112,43 @@ public async Task Handle_ValidRequest_ShouldAssignCorrectUserId()
     Assert.NotNull(createdOrder);
     Assert.Equal(userId, createdOrder!.UserId);
 }
+[Fact]
+public async Task Handle_WhenRepositoryFails_ShouldThrowException()
+{
+    // Arrange
+    var repositoryMock = new Mock<IOrderRepository>();
+    var unitOfWorkMock = new Mock<IUnitOfWork>();
+    var mapperMock = new Mock<IMapper>();
+
+    repositoryMock
+        .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
+        .ThrowsAsync(new Exception("Repository error"));
+
+    var handler = new CreateOrderHandler(
+        repositoryMock.Object,
+        unitOfWorkMock.Object,
+        mapperMock.Object);
+
+    var userId = Guid.NewGuid();
+
+    var request = new CreateOrderRequest
+    {
+        CustomerName = "Test Kullanıcı",
+        Email = "test@test.com",
+        PhoneNumber = "05551112233",
+        Address = "Antakya Hatay",
+        ProductID = 2,
+        Quantity = 2
+    };
+
+    // Act & Assert
+    var exception = await Assert.ThrowsAsync<Exception>(
+        () => handler.Handle(userId, request));
+
+    Assert.Equal("Repository error", exception.Message);
+
+    unitOfWorkMock.Verify(
+        x => x.SaveChangesAsync(),
+        Times.Never);
+}
 }
