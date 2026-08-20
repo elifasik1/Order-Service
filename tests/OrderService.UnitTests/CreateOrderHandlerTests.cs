@@ -151,4 +151,49 @@ public async Task Handle_WhenRepositoryFails_ShouldThrowException()
         x => x.SaveChangesAsync(),
         Times.Never);
 }
+[Fact]
+public async Task Handle_ValidRequest_ShouldAddOrderWithCorrectQuantity()
+{
+    // Arrange
+    var repositoryMock = new Mock<IOrderRepository>();
+    var unitOfWorkMock = new Mock<IUnitOfWork>();
+    var mapperMock = new Mock<IMapper>();
+
+    mapperMock
+        .Setup(x => x.Map<CreateOrderResponse>(
+            It.IsAny<Domain.Entities.Order>()))
+        .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+        {
+            TotalPrice = order.TotalPrice,
+            Id = order.Id,
+            CreatedAt = order.CreatedAt,
+            Status = order.Status
+        });
+
+    var handler = new CreateOrderHandler(
+        repositoryMock.Object,
+        unitOfWorkMock.Object,
+        mapperMock.Object);
+
+    var userId = Guid.NewGuid();
+
+    var request = new CreateOrderRequest
+    {
+        CustomerName = "Test Kullanıcı",
+        Email = "test@test.com",
+        PhoneNumber = "05551112233",
+        Address = "Antakya Hatay",
+        ProductID = 2,
+        Quantity = 5
+    };
+
+    // Act
+    await handler.Handle(userId, request);
+
+    // Assert
+    repositoryMock.Verify(
+        x => x.AddAsync(It.Is<Domain.Entities.Order>(
+            order => order.Quantity == 5)),
+        Times.Once);
+}
 }
