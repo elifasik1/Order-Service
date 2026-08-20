@@ -1,0 +1,6 @@
+{
+  "OrderService.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.API",
+  "OrderService.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.Application",
+  "OrderService.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.Domain",
+  "OrderService.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\elifa\\Desktop\\OrderService\\src\\OrderService.Infrastructure"
+}

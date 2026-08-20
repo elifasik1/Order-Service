@@ -1,0 +1,10 @@
+2026-08-20 23:57:15.504 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-20 23:57:15.653 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-20 23:57:15.653 +03:00 [INF] Hosting environment: Development
+2026-08-20 23:57:15.653 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-20 23:57:15.687 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-20 23:57:15.783 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-20 23:57:15.786 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-20 23:57:15.797 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-20 23:57:15.800 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 114.1574ms
+2026-08-20 23:57:15.820 +03:00 [INF] Application is shutting down...

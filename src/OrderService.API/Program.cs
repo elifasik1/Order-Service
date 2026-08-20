@@ -284,3 +284,6 @@ app.MapGet("/orders/my",
 
 
 app.Run();
+public partial class Program
+{
+}
