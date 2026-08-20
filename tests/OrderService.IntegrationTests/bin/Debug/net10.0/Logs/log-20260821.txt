@@ -1,0 +1,226 @@
+2026-08-21 00:12:21.520 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:12:21.520 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:12:21.629 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:12:21.629 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:12:21.630 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:12:21.635 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:12:21.635 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:12:21.635 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:12:21.651 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:12:21.651 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:12:21.724 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:12:21.724 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-21 00:12:21.726 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:12:21.729 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-21 00:12:21.735 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 401 null null 84.7575ms
+2026-08-21 00:12:21.736 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:12:21.736 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 86.411ms
+2026-08-21 00:12:21.760 +03:00 [INF] Application is shutting down...
+2026-08-21 00:12:21.766 +03:00 [INF] Application is shutting down...
+2026-08-21 00:12:40.514 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:12:40.514 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:12:40.626 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:12:40.626 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:12:40.626 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:12:40.626 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:12:40.626 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:12:40.627 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:12:40.648 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:12:40.648 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:12:40.720 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:12:40.720 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-08-21 00:12:40.722 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:12:40.724 +03:00 [INF] AuthenticationScheme: Bearer was challenged.
+2026-08-21 00:12:40.730 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 401 null null 82.962ms
+2026-08-21 00:12:40.730 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:12:40.731 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 84.3358ms
+2026-08-21 00:12:40.750 +03:00 [INF] Application is shutting down...
+2026-08-21 00:12:40.756 +03:00 [INF] Application is shutting down...
+2026-08-21 00:13:39.274 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:13:39.274 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:13:39.384 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:13:39.384 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:13:39.384 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:13:39.387 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:13:39.388 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:13:39.388 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:13:39.405 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:13:39.405 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:13:39.464 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:13:39.465 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:13:39.466 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:13:39.466 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:13:39.474 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:13:39.475 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:13:39.478 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 74.0549ms
+2026-08-21 00:13:39.476 +03:00 [ERR] Required parameter "int Page" was not provided from query string.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Required parameter "int Page" was not provided from query string.
+   at lambda_method49(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
+2026-08-21 00:13:39.488 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 500 null application/problem+json 84.7992ms
+2026-08-21 00:13:39.498 +03:00 [INF] Application is shutting down...
+2026-08-21 00:13:39.498 +03:00 [INF] Application is shutting down...
+2026-08-21 00:14:33.346 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:14:33.346 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:14:33.465 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:14:33.465 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:14:33.465 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:14:33.468 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:14:33.468 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:14:33.468 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:14:33.485 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:14:33.485 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:14:33.544 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:14:33.545 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:14:33.546 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:14:33.546 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:14:33.547 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:14:33.549 +03:00 [ERR] Required parameter "int Page" was not provided from query string.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Required parameter "int Page" was not provided from query string.
+   at lambda_method48(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
+2026-08-21 00:14:33.556 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:14:33.558 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 74.9915ms
+2026-08-21 00:14:33.562 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 500 null application/problem+json 79.2961ms
+2026-08-21 00:14:33.579 +03:00 [INF] Application is shutting down...
+2026-08-21 00:14:33.581 +03:00 [INF] Application is shutting down...
+2026-08-21 00:15:03.273 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:15:03.273 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:15:03.431 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:15:03.432 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:15:03.432 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:15:03.436 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:15:03.436 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:15:03.436 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:15:03.452 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:15:03.452 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:15:03.506 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:15:03.507 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:15:03.508 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:15:03.508 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:15:03.509 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:15:03.510 +03:00 [ERR] Required parameter "int Page" was not provided from query string.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Required parameter "int Page" was not provided from query string.
+   at lambda_method49(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
+2026-08-21 00:15:03.528 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:15:03.531 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 79.7836ms
+2026-08-21 00:15:03.534 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 500 null application/problem+json 83.4987ms
+2026-08-21 00:15:03.551 +03:00 [INF] Application is shutting down...
+2026-08-21 00:15:03.551 +03:00 [INF] Application is shutting down...
+2026-08-21 00:16:04.522 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:16:04.522 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:16:04.626 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:16:04.626 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:16:04.626 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:16:04.630 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:16:04.630 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:16:04.630 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:16:04.646 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders - null null
+2026-08-21 00:16:04.646 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:16:04.707 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:16:04.707 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:16:04.708 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:16:04.708 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:16:04.710 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:16:04.711 +03:00 [ERR] Required parameter "int Page" was not provided from query string.
+Microsoft.AspNetCore.Http.BadHttpRequestException: Required parameter "int Page" was not provided from query string.
+   at lambda_method49(Closure, Object, HttpContext)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at OrderService.API.Middleware.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in C:\Users\elifa\Desktop\OrderService\src\OrderService.API\Middleware\GlobalExceptionMiddleware.cs:line 19
+2026-08-21 00:16:04.719 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:16:04.721 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 76.2392ms
+2026-08-21 00:16:04.724 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders - 500 null application/problem+json 79.3162ms
+2026-08-21 00:16:04.741 +03:00 [INF] Application is shutting down...
+2026-08-21 00:16:04.741 +03:00 [INF] Application is shutting down...
+2026-08-21 00:17:01.834 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:17:01.834 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:17:01.941 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:17:01.941 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:17:01.942 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:17:01.942 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:17:01.942 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:17:01.942 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:17:01.963 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:17:01.963 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders?page=1&pageSize=10 - null null
+2026-08-21 00:17:02.046 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:17:02.046 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:17:02.048 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:17:02.048 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:17:02.060 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:17:02.063 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 101.32ms
+2026-08-21 00:17:02.094 +03:00 [INF] Application is shutting down...
+2026-08-21 00:17:02.726 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-21 00:17:02.727 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-21 00:17:03.000 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted")
+LIMIT @p1 OFFSET @p
+2026-08-21 00:17:03.088 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted")
+2026-08-21 00:17:03.091 +03:00 [INF] Setting HTTP status code 200.
+2026-08-21 00:17:03.116 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-21 00:17:03.123 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:17:03.130 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders?page=1&pageSize=10 - 200 null application/json; charset=utf-8 1168.2204ms
+2026-08-21 00:17:03.132 +03:00 [INF] Application is shutting down...
+2026-08-21 00:17:36.685 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:17:36.685 +03:00 [INF] User profile is available. Using 'C:\Users\elifa\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-08-21 00:17:36.793 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:17:36.794 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:17:36.794 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:17:36.799 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-08-21 00:17:36.799 +03:00 [INF] Hosting environment: Development
+2026-08-21 00:17:36.799 +03:00 [INF] Content root path: C:\Users\elifa\Desktop\OrderService\src\OrderService.API
+2026-08-21 00:17:36.814 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/orders?page=1&pageSize=10 - null null
+2026-08-21 00:17:36.814 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost/health - null null
+2026-08-21 00:17:36.871 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:17:36.871 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-08-21 00:17:36.873 +03:00 [INF] Executing endpoint 'HTTP: GET /orders'
+2026-08-21 00:17:36.873 +03:00 [INF] Executing endpoint 'Health checks'
+2026-08-21 00:17:36.884 +03:00 [INF] Executed endpoint 'Health checks'
+2026-08-21 00:17:36.887 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/health - 200 null text/plain 73.5967ms
+2026-08-21 00:17:36.909 +03:00 [INF] Application is shutting down...
+2026-08-21 00:17:37.515 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-21 00:17:37.516 +03:00 [WRN] The query uses a row limiting operator ('Skip'/'Take') without an 'OrderBy' operator. This may lead to unpredictable results. If the 'Distinct' operator is used after 'OrderBy', then make sure to use the 'OrderBy' operator after 'Distinct' as the ordering would otherwise get erased.
+2026-08-21 00:17:37.758 +03:00 [INF] Executed DbCommand (36ms) [Parameters=[@p1='?' (DbType = Int32), @p='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT o."Id", o."Address", o."CreatedAt", o."CustomerName", o."Email", o."IsDeleted", o."PhoneNumber", o."ProductId", o."Quantity", o."Status", o."TotalPrice", o."UpdatedAt", o."UserId", o.xmin
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted")
+LIMIT @p1 OFFSET @p
+2026-08-21 00:17:37.847 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM "Orders" AS o
+WHERE NOT (o."IsDeleted")
+2026-08-21 00:17:37.852 +03:00 [INF] Setting HTTP status code 200.
+2026-08-21 00:17:37.877 +03:00 [INF] Writing value of type 'GetPagedOrdersResponse' as Json.
+2026-08-21 00:17:37.885 +03:00 [INF] Executed endpoint 'HTTP: GET /orders'
+2026-08-21 00:17:37.892 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost/orders?page=1&pageSize=10 - 200 null application/json; charset=utf-8 1079.0087ms
+2026-08-21 00:17:37.893 +03:00 [INF] Application is shutting down...
