@@ -15,6 +15,17 @@ public class CreateOrderHandlerTests
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var mapperMock = new Mock<IMapper>();
 
+        mapperMock
+            .Setup(x => x.Map<CreateOrderResponse>(
+                It.IsAny<Domain.Entities.Order>()))
+            .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+            {
+                TotalPrice = order.TotalPrice,
+                Id = order.Id,
+                CreatedAt = order.CreatedAt,
+                Status = order.Status
+            });
+
         var handler = new CreateOrderHandler(
             repositoryMock.Object,
             unitOfWorkMock.Object,
@@ -37,6 +48,8 @@ public class CreateOrderHandlerTests
 
         // Assert
         Assert.True(result.IsSuccess);
+       Assert.NotNull(result.Data);
+Assert.Equal(200, result.Data!.TotalPrice);
 
         repositoryMock.Verify(
             x => x.AddAsync(It.IsAny<Domain.Entities.Order>()),
@@ -46,4 +59,57 @@ public class CreateOrderHandlerTests
             x => x.SaveChangesAsync(),
             Times.Once);
     }
+
+    [Fact]
+public async Task Handle_ValidRequest_ShouldAssignCorrectUserId()
+{
+    // Arrange
+    var repositoryMock = new Mock<IOrderRepository>();
+    var unitOfWorkMock = new Mock<IUnitOfWork>();
+    var mapperMock = new Mock<IMapper>();
+
+    mapperMock
+        .Setup(x => x.Map<CreateOrderResponse>(
+            It.IsAny<Domain.Entities.Order>()))
+        .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+        {
+            TotalPrice = order.TotalPrice,
+            Id = order.Id,
+            CreatedAt = order.CreatedAt,
+            Status = order.Status
+        });
+
+    Domain.Entities.Order? createdOrder = null;
+
+    repositoryMock
+        .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
+        .Callback<Domain.Entities.Order>(order =>
+        {
+            createdOrder = order;
+        });
+
+    var handler = new CreateOrderHandler(
+        repositoryMock.Object,
+        unitOfWorkMock.Object,
+        mapperMock.Object);
+
+    var userId = Guid.NewGuid();
+
+    var request = new CreateOrderRequest
+    {
+        CustomerName = "Test Kullanıcı",
+        Email = "test@test.com",
+        PhoneNumber = "05551112233",
+        Address = "Antakya Hatay",
+        ProductID = 2,
+        Quantity = 2
+    };
+
+    // Act
+    await handler.Handle(userId, request);
+
+    // Assert
+    Assert.NotNull(createdOrder);
+    Assert.Equal(userId, createdOrder!.UserId);
+}
 }
