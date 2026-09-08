@@ -1,7 +1,7 @@
-
 using System.Text.Json;
 using Serilog;
 using OrderService.API.DTOs;
+
 namespace OrderService.API.Middleware;
 
 public class GlobalExceptionMiddleware
@@ -12,53 +12,54 @@ public class GlobalExceptionMiddleware
     {
         _next = next;
     }
+
     public async Task InvokeAsync(HttpContext context)
-{
-    try
     {
-        await _next(context);
+        try
+        {
+            await _next(context);
+        }
+        catch (Exception ex)
+        {
+            await HandleExceptionAsync(context, ex);
+        }
     }
-    catch (Exception ex)
+
+    private static async Task HandleExceptionAsync(
+        HttpContext context,
+        Exception ex)
     {
-        await HandleExceptionAsync(context, ex);
+        Log.Error(ex, "Unhandled exception occurred.");
+        Console.Error.WriteLine(ex.ToString());
+
+        context.Response.ContentType = "application/problem+json";
+
+        var statusCode = ex switch
+        {
+            UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
+            KeyNotFoundException => StatusCodes.Status404NotFound,
+            _ => StatusCodes.Status500InternalServerError
+        };
+
+        context.Response.StatusCode = statusCode;
+
+        var response = new ErrorResponse
+        {
+            StatusCode = statusCode,
+
+            // Geçici olarak gerçek exception'ı görmek için:
+            Message = ex.ToString(),
+
+            Timestamp = DateTime.UtcNow
+        };
+
+        var json = JsonSerializer.Serialize(
+            response,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+        await context.Response.WriteAsync(json);
     }
-
-}
-private static async Task HandleExceptionAsync(
-    HttpContext context,
-    Exception ex)
-{
-     Log.Error(ex, "Unhandled exception occurred.");
-     Console.Error.WriteLine(ex.ToString());
-    context.Response.ContentType = "application/problem+json";
-
-    var statusCode = ex switch
-    {
-        UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
-        KeyNotFoundException => StatusCodes.Status404NotFound,
-        _ => StatusCodes.Status500InternalServerError
-    };
-
-    context.Response.StatusCode = statusCode;
-
-    var response = new ErrorResponse
-    {
-        StatusCode = statusCode,
-        Message = statusCode == StatusCodes.Status500InternalServerError
-            ? "An unexpected error occurred."
-            : ex.Message,
-        Timestamp = DateTime.UtcNow
-    };
-
-    var json = JsonSerializer.Serialize(
-    response,
-    new JsonSerializerOptions
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    });
-
-    await context.Response.WriteAsync(json);
-}
-
-    
 }
