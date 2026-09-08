@@ -44,14 +44,13 @@ public class GlobalExceptionMiddleware
         context.Response.StatusCode = statusCode;
 
         var response = new ErrorResponse
-        {
-            StatusCode = statusCode,
-
-            // Geçici olarak gerçek exception'ı görmek için:
-            Message = ex.ToString(),
-
-            Timestamp = DateTime.UtcNow
-        };
+{
+    StatusCode = statusCode,
+    Message = statusCode == StatusCodes.Status500InternalServerError
+        ? "An unexpected error occurred."
+        : ex.Message,
+    Timestamp = DateTime.UtcNow
+};
 
         var json = JsonSerializer.Serialize(
             response,

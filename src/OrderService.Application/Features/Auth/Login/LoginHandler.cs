@@ -47,10 +47,6 @@ await _refreshTokenRepository.SaveChangesAsync();
     RefreshToken = refreshTokenValue
 };
 
-        
-       
     }
-
-
     
 }
