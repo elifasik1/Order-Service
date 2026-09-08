@@ -12,6 +12,12 @@ public class CustomWebApplicationFactory
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseEnvironment("Testing");
+
+        builder.UseSetting(
+            "ConnectionStrings:DefaultConnection",
+            "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres");
+
         builder.ConfigureAppConfiguration((context, config) =>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
