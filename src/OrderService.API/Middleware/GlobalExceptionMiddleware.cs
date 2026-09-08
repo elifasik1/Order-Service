@@ -29,6 +29,7 @@ private static async Task HandleExceptionAsync(
     Exception ex)
 {
      Log.Error(ex, "Unhandled exception occurred.");
+     Console.Error.WriteLine(ex.ToString());
     context.Response.ContentType = "application/problem+json";
 
     var statusCode = ex switch
