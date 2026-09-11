@@ -50,3 +50,9 @@ jobs:
 
       - name: Test
         run: dotnet test --no-build
+
+              - name: Validate Docker Compose
+        run: docker compose config
+
+      - name: Build Docker Image
+        run: docker compose build api
