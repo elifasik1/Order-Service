@@ -231,4 +231,93 @@ public async Task Handle_ValidRefreshToken_ShouldGenerateNewTokens()
         x => x.GenerateRefreshToken(),
         Times.Once);
 }
+[Fact]
+public async Task Handle_WhenRefreshTokenIsReused_ShouldThrowUnauthorized()
+{
+    // Arrange
+    var refreshTokenRepositoryMock = new Mock<IRefreshTokenRepository>();
+    var userRepositoryMock = new Mock<IUserRepository>();
+    var jwtServiceMock = new Mock<IJwtService>();
+
+    var userId = Guid.NewGuid();
+
+    var user = new Domain.Entities.User
+    {
+        Id = userId,
+        FirstName = "Test",
+        LastName = "User",
+        Email = "test@test.com"
+    };
+
+    var refreshToken = new Domain.Entities.RefreshToken
+    {
+        Id = Guid.NewGuid(),
+        Token = "old-token",
+        UserId = userId,
+        CreatedAt = DateTime.UtcNow.AddDays(-1),
+        ExpiresAt = DateTime.UtcNow.AddDays(1),
+        RevokedAt = null
+    };
+
+    refreshTokenRepositoryMock
+        .Setup(x => x.GetByTokenAsync("old-token"))
+        .ReturnsAsync(refreshToken);
+
+    userRepositoryMock
+        .Setup(x => x.FindByIdAsync(userId))
+        .ReturnsAsync(user);
+
+    jwtServiceMock
+        .Setup(x => x.GenerateAccessTokenAsync(user))
+        .ReturnsAsync("new-access-token");
+
+    jwtServiceMock
+        .Setup(x => x.GenerateRefreshToken())
+        .Returns("new-refresh-token");
+
+    var handler = new RefreshHandler(
+        refreshTokenRepositoryMock.Object,
+        userRepositoryMock.Object,
+        jwtServiceMock.Object);
+
+    var request = new RefreshRequest
+    {
+        RefreshToken = "old-token"
+    };
+
+    // Act
+    await handler.Handle(request);
+
+    // Assert
+    Assert.NotNull(refreshToken.RevokedAt);
+
+    await Assert.ThrowsAsync<UnauthorizedAccessException>(
+        () => handler.Handle(request));
+}
+[Fact]
+public async Task Handle_EmptyRefreshToken_ShouldThrowUnauthorized()
+{
+    // Arrange
+    var refreshTokenRepositoryMock = new Mock<IRefreshTokenRepository>();
+    var userRepositoryMock = new Mock<IUserRepository>();
+    var jwtServiceMock = new Mock<IJwtService>();
+
+    refreshTokenRepositoryMock
+        .Setup(x => x.GetByTokenAsync(""))
+        .ReturnsAsync((Domain.Entities.RefreshToken?)null);
+
+    var handler = new RefreshHandler(
+        refreshTokenRepositoryMock.Object,
+        userRepositoryMock.Object,
+        jwtServiceMock.Object);
+
+    var request = new RefreshRequest
+    {
+        RefreshToken = ""
+    };
+
+    // Act & Assert
+    await Assert.ThrowsAsync<UnauthorizedAccessException>(
+        () => handler.Handle(request));
+}
 }
