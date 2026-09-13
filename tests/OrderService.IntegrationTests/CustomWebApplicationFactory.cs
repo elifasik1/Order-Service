@@ -18,12 +18,19 @@ public class CustomWebApplicationFactory
             "ConnectionStrings:DefaultConnection",
             "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres");
 
+        builder.UseSetting(
+            "ConnectionStrings:Redis",
+            "localhost:6379");
+
         builder.ConfigureAppConfiguration((context, config) =>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
             {
                 ["ConnectionStrings:DefaultConnection"] =
-                    "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres"
+                    "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres",
+
+                ["ConnectionStrings:Redis"] =
+                    "localhost:6379"
             });
         });
 

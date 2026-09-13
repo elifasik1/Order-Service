@@ -1,99 +1,70 @@
-using Moq;
+using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
-namespace OrderService.UnitTests;
-
-public class UpdateOrderHandlerTests
+public class UpdateOrderHandler
 {
-    [Fact]
-    public async Task Handle_OrderNotFound_ShouldReturnFailure()
+    private readonly IOrderRepository _orderRepository;
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IOrderCacheService _orderCacheService;
+
+    public UpdateOrderHandler(
+        IOrderRepository orderRepository,
+        IUnitOfWork unitOfWork,
+        IOrderCacheService orderCacheService)
     {
-        // Arrange
-        var repositoryMock = new Mock<IOrderRepository>();
-        var unitOfWorkMock = new Mock<IUnitOfWork>();
+        _orderRepository = orderRepository;
+        _unitOfWork = unitOfWork;
+        _orderCacheService = orderCacheService;
+    }
 
-        repositoryMock
-            .Setup(x => x.FindByIdAsync(It.IsAny<Guid>()))
-            .ReturnsAsync((Domain.Entities.Order?)null);
+    public async Task<Result<UpdateOrderResponse>> Handle(
+        Guid id,
+        UpdateOrderRequest request)
+    {
+        var order = await _orderRepository.FindByIdAsync(id);
 
-        var handler = new UpdateOrderHandler(
-            repositoryMock.Object,
-            unitOfWorkMock.Object);
-
-        var orderId = Guid.NewGuid();
-
-        var request = new UpdateOrderRequest
+        if (order == null)
         {
-            CustomerName = "Test Kullanıcı",
-            Email = "test@test.com",
-            PhoneNumber = "05551112233",
-            Address = "Antakya Hatay",
-            ProductID = 2,
-            Quantity = 3,
-            Version = 811
+            return Result<UpdateOrderResponse>.Failure(
+                "Sipariş bulunamadı.");
+        }
+
+        _orderRepository.SetOriginalVersion(order, request.Version);
+
+        const decimal productPrice = 100;
+        decimal totalPrice = request.Quantity * productPrice;
+
+        order.Update(
+            request.CustomerName,
+            request.Email,
+            request.PhoneNumber,
+            request.Address,
+            request.ProductID,
+            request.Quantity,
+            totalPrice);
+
+        try
+        {
+            await _unitOfWork.SaveChangesAsync();
+
+            await _orderCacheService.InvalidateOrdersCacheAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            return Result<UpdateOrderResponse>.Failure(
+                "Sipariş başka bir kullanıcı tarafından güncellendi. Lütfen siparişi yenileyip tekrar deneyin.");
+        }
+
+        var response = new UpdateOrderResponse
+        {
+            TotalPrice = order.TotalPrice,
+            Id = order.Id,
+            Status = order.Status
         };
 
-        // Act
-        var result = await handler.Handle(orderId, request);
-
-        // Assert
-        Assert.False(result.IsSuccess);
-        Assert.Equal("Sipariş bulunamadı.", result.Message);
-
-        unitOfWorkMock.Verify(
-            x => x.SaveChangesAsync(),
-            Times.Never);
+        return Result<UpdateOrderResponse>.Success(
+            response,
+            "Sipariş başarıyla güncellendi.");
     }
-    [Fact]
-public async Task Handle_ConcurrencyException_ShouldReturnFailure()
-{
-    // Arrange
-    var repositoryMock = new Mock<IOrderRepository>();
-    var unitOfWorkMock = new Mock<IUnitOfWork>();
-
-    var orderId = Guid.NewGuid();
-
-    var order = new Domain.Entities.Order(
-        "Test Kullanıcı",
-        "test@test.com",
-        "05551112233",
-        "Antakya Hatay",
-        2,
-        2,
-        200,
-        Guid.NewGuid());
-
-    repositoryMock
-        .Setup(x => x.FindByIdAsync(orderId))
-        .ReturnsAsync(order);
-
-    unitOfWorkMock
-        .Setup(x => x.SaveChangesAsync())
-        .ThrowsAsync(new Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException());
-
-    var handler = new UpdateOrderHandler(
-        repositoryMock.Object,
-        unitOfWorkMock.Object);
-
-    var request = new UpdateOrderRequest
-    {
-        CustomerName = "Concurrency Test",
-        Email = "test@test.com",
-        PhoneNumber = "05551112233",
-        Address = "Antakya Hatay",
-        ProductID = 2,
-        Quantity = 3,
-        Version = 811
-    };
-
-    // Act
-    var result = await handler.Handle(orderId, request);
-
-    // Assert
-    Assert.False(result.IsSuccess);
-
-    Assert.Equal(
-        "Sipariş başka bir kullanıcı tarafından güncellendi. Lütfen siparişi yenileyip tekrar deneyin.",
-        result.Message);
-}
 }

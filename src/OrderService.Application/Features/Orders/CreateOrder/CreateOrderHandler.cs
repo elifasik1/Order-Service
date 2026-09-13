@@ -10,15 +10,18 @@ public class CreateOrderHandler
     private readonly IOrderRepository _orderRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly IOrderCacheService _orderCacheService;
 
     public CreateOrderHandler(
         IOrderRepository orderRepository,
         IUnitOfWork unitOfWork,
-        IMapper mapper)
+        IMapper mapper,
+        IOrderCacheService orderCacheService)
     {
         _orderRepository = orderRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _orderCacheService = orderCacheService;
     }
 
     public async Task<Result<CreateOrderResponse>> Handle(
@@ -40,9 +43,11 @@ public class CreateOrderHandler
             userId);
 
         await _orderRepository.AddAsync(order);
-        await _unitOfWork.SaveChangesAsync();
+await _unitOfWork.SaveChangesAsync();
 
-        var response = _mapper.Map<CreateOrderResponse>(order);
+await _orderCacheService.InvalidateOrdersCacheAsync();
+
+var response = _mapper.Map<CreateOrderResponse>(order);
 
         return Result<CreateOrderResponse>.Success(
             response,

@@ -14,6 +14,7 @@ public class CreateOrderHandlerTests
         var repositoryMock = new Mock<IOrderRepository>();
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var mapperMock = new Mock<IMapper>();
+        var orderCacheServiceMock = new Mock<IOrderCacheService>();
 
         mapperMock
             .Setup(x => x.Map<CreateOrderResponse>(
@@ -29,7 +30,8 @@ public class CreateOrderHandlerTests
         var handler = new CreateOrderHandler(
             repositoryMock.Object,
             unitOfWorkMock.Object,
-            mapperMock.Object);
+            mapperMock.Object,
+            orderCacheServiceMock.Object);
 
         var userId = Guid.NewGuid();
 
@@ -48,8 +50,8 @@ public class CreateOrderHandlerTests
 
         // Assert
         Assert.True(result.IsSuccess);
-       Assert.NotNull(result.Data);
-Assert.Equal(200, result.Data!.TotalPrice);
+        Assert.NotNull(result.Data);
+        Assert.Equal(200, result.Data!.TotalPrice);
 
         repositoryMock.Verify(
             x => x.AddAsync(It.IsAny<Domain.Entities.Order>()),
@@ -58,142 +60,158 @@ Assert.Equal(200, result.Data!.TotalPrice);
         unitOfWorkMock.Verify(
             x => x.SaveChangesAsync(),
             Times.Once);
+
+        orderCacheServiceMock.Verify(
+            x => x.InvalidateOrdersCacheAsync(),
+            Times.Once);
     }
 
     [Fact]
-public async Task Handle_ValidRequest_ShouldAssignCorrectUserId()
-{
-    // Arrange
-    var repositoryMock = new Mock<IOrderRepository>();
-    var unitOfWorkMock = new Mock<IUnitOfWork>();
-    var mapperMock = new Mock<IMapper>();
-
-    mapperMock
-        .Setup(x => x.Map<CreateOrderResponse>(
-            It.IsAny<Domain.Entities.Order>()))
-        .Returns((Domain.Entities.Order order) => new CreateOrderResponse
-        {
-            TotalPrice = order.TotalPrice,
-            Id = order.Id,
-            CreatedAt = order.CreatedAt,
-            Status = order.Status
-        });
-
-    Domain.Entities.Order? createdOrder = null;
-
-    repositoryMock
-        .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
-        .Callback<Domain.Entities.Order>(order =>
-        {
-            createdOrder = order;
-        });
-
-    var handler = new CreateOrderHandler(
-        repositoryMock.Object,
-        unitOfWorkMock.Object,
-        mapperMock.Object);
-
-    var userId = Guid.NewGuid();
-
-    var request = new CreateOrderRequest
+    public async Task Handle_ValidRequest_ShouldAssignCorrectUserId()
     {
-        CustomerName = "Test Kullanıcı",
-        Email = "test@test.com",
-        PhoneNumber = "05551112233",
-        Address = "Antakya Hatay",
-        ProductID = 2,
-        Quantity = 2
-    };
+        // Arrange
+        var repositoryMock = new Mock<IOrderRepository>();
+        var unitOfWorkMock = new Mock<IUnitOfWork>();
+        var mapperMock = new Mock<IMapper>();
+        var orderCacheServiceMock = new Mock<IOrderCacheService>();
 
-    // Act
-    await handler.Handle(userId, request);
+        mapperMock
+            .Setup(x => x.Map<CreateOrderResponse>(
+                It.IsAny<Domain.Entities.Order>()))
+            .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+            {
+                TotalPrice = order.TotalPrice,
+                Id = order.Id,
+                CreatedAt = order.CreatedAt,
+                Status = order.Status
+            });
 
-    // Assert
-    Assert.NotNull(createdOrder);
-    Assert.Equal(userId, createdOrder!.UserId);
-}
-[Fact]
-public async Task Handle_WhenRepositoryFails_ShouldThrowException()
-{
-    // Arrange
-    var repositoryMock = new Mock<IOrderRepository>();
-    var unitOfWorkMock = new Mock<IUnitOfWork>();
-    var mapperMock = new Mock<IMapper>();
+        Domain.Entities.Order? createdOrder = null;
 
-    repositoryMock
-        .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
-        .ThrowsAsync(new Exception("Repository error"));
+        repositoryMock
+            .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
+            .Callback<Domain.Entities.Order>(order =>
+            {
+                createdOrder = order;
+            });
 
-    var handler = new CreateOrderHandler(
-        repositoryMock.Object,
-        unitOfWorkMock.Object,
-        mapperMock.Object);
+        var handler = new CreateOrderHandler(
+            repositoryMock.Object,
+            unitOfWorkMock.Object,
+            mapperMock.Object,
+            orderCacheServiceMock.Object);
 
-    var userId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
 
-    var request = new CreateOrderRequest
-    {
-        CustomerName = "Test Kullanıcı",
-        Email = "test@test.com",
-        PhoneNumber = "05551112233",
-        Address = "Antakya Hatay",
-        ProductID = 2,
-        Quantity = 2
-    };
-
-    // Act & Assert
-    var exception = await Assert.ThrowsAsync<Exception>(
-        () => handler.Handle(userId, request));
-
-    Assert.Equal("Repository error", exception.Message);
-
-    unitOfWorkMock.Verify(
-        x => x.SaveChangesAsync(),
-        Times.Never);
-}
-[Fact]
-public async Task Handle_ValidRequest_ShouldAddOrderWithCorrectQuantity()
-{
-    // Arrange
-    var repositoryMock = new Mock<IOrderRepository>();
-    var unitOfWorkMock = new Mock<IUnitOfWork>();
-    var mapperMock = new Mock<IMapper>();
-
-    mapperMock
-        .Setup(x => x.Map<CreateOrderResponse>(
-            It.IsAny<Domain.Entities.Order>()))
-        .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+        var request = new CreateOrderRequest
         {
-            TotalPrice = order.TotalPrice,
-            Id = order.Id,
-            CreatedAt = order.CreatedAt,
-            Status = order.Status
-        });
+            CustomerName = "Test Kullanıcı",
+            Email = "test@test.com",
+            PhoneNumber = "05551112233",
+            Address = "Antakya Hatay",
+            ProductID = 2,
+            Quantity = 2
+        };
 
-    var handler = new CreateOrderHandler(
-        repositoryMock.Object,
-        unitOfWorkMock.Object,
-        mapperMock.Object);
+        // Act
+        await handler.Handle(userId, request);
 
-    var userId = Guid.NewGuid();
+        // Assert
+        Assert.NotNull(createdOrder);
+        Assert.Equal(userId, createdOrder!.UserId);
+    }
 
-    var request = new CreateOrderRequest
+    [Fact]
+    public async Task Handle_WhenRepositoryFails_ShouldThrowException()
     {
-        CustomerName = "Test Kullanıcı",
-        Email = "test@test.com",
-        PhoneNumber = "05551112233",
-        Address = "Antakya Hatay",
-        ProductID = 2,
-        Quantity = 5
-    };
+        // Arrange
+        var repositoryMock = new Mock<IOrderRepository>();
+        var unitOfWorkMock = new Mock<IUnitOfWork>();
+        var mapperMock = new Mock<IMapper>();
+        var orderCacheServiceMock = new Mock<IOrderCacheService>();
 
-    // Act
-    await handler.Handle(userId, request);
+        repositoryMock
+            .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
+            .ThrowsAsync(new Exception("Repository error"));
 
-    // Assert
-    repositoryMock.Verify(
-        x => x.AddAsync(It.Is<Domain.Entities.Order>(
-            order => order.Quantity == 5)),
-        Times.Once);
-}
+        var handler = new CreateOrderHandler(
+            repositoryMock.Object,
+            unitOfWorkMock.Object,
+            mapperMock.Object,
+            orderCacheServiceMock.Object);
+
+        var userId = Guid.NewGuid();
+
+        var request = new CreateOrderRequest
+        {
+            CustomerName = "Test Kullanıcı",
+            Email = "test@test.com",
+            PhoneNumber = "05551112233",
+            Address = "Antakya Hatay",
+            ProductID = 2,
+            Quantity = 2
+        };
+
+        // Act & Assert
+        var exception = await Assert.ThrowsAsync<Exception>(
+            () => handler.Handle(userId, request));
+
+        Assert.Equal("Repository error", exception.Message);
+
+        unitOfWorkMock.Verify(
+            x => x.SaveChangesAsync(),
+            Times.Never);
+
+        orderCacheServiceMock.Verify(
+            x => x.InvalidateOrdersCacheAsync(),
+            Times.Never);
+    }
+
+    [Fact]
+    public async Task Handle_ValidRequest_ShouldAddOrderWithCorrectQuantity()
+    {
+        // Arrange
+        var repositoryMock = new Mock<IOrderRepository>();
+        var unitOfWorkMock = new Mock<IUnitOfWork>();
+        var mapperMock = new Mock<IMapper>();
+        var orderCacheServiceMock = new Mock<IOrderCacheService>();
+
+        mapperMock
+            .Setup(x => x.Map<CreateOrderResponse>(
+                It.IsAny<Domain.Entities.Order>()))
+            .Returns((Domain.Entities.Order order) => new CreateOrderResponse
+            {
+                TotalPrice = order.TotalPrice,
+                Id = order.Id,
+                CreatedAt = order.CreatedAt,
+                Status = order.Status
+            });
+
+        var handler = new CreateOrderHandler(
+            repositoryMock.Object,
+            unitOfWorkMock.Object,
+            mapperMock.Object,
+            orderCacheServiceMock.Object);
+
+        var userId = Guid.NewGuid();
+
+        var request = new CreateOrderRequest
+        {
+            CustomerName = "Test Kullanıcı",
+            Email = "test@test.com",
+            PhoneNumber = "05551112233",
+            Address = "Antakya Hatay",
+            ProductID = 2,
+            Quantity = 5
+        };
+
+        // Act
+        await handler.Handle(userId, request);
+
+        // Assert
+        repositoryMock.Verify(
+            x => x.AddAsync(It.Is<Domain.Entities.Order>(
+                order => order.Quantity == 5)),
+            Times.Once);
+    }
 }

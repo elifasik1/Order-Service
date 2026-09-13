@@ -5,13 +5,16 @@ public class DeleteOrderHandler
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IOrderCacheService _orderCacheService;
 
     public DeleteOrderHandler(
         IOrderRepository orderRepository,
-        IUnitOfWork unitOfWork)
+        IUnitOfWork unitOfWork,
+        IOrderCacheService orderCacheService)
     {
         _orderRepository = orderRepository;
         _unitOfWork = unitOfWork;
+        _orderCacheService = orderCacheService;
     }
 
     public async Task<Result<Guid>> Handle(Guid id)
@@ -26,6 +29,8 @@ public class DeleteOrderHandler
         order.SoftDelete();
 
         await _unitOfWork.SaveChangesAsync();
+
+        await _orderCacheService.InvalidateOrdersCacheAsync();
 
         return Result<Guid>.Success(
             order.Id,

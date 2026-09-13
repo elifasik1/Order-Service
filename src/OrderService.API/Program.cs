@@ -22,6 +22,7 @@ using Serilog;
 using AutoMapper;
 using OrderService.Application.Mappings;
 using OrderService.Application.Features.Orders.CreateOrder;
+using StackExchange.Redis;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File(
@@ -76,6 +77,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
 });
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration =
+        builder.Configuration.GetConnectionString("Redis")
+        ?? "redis:6379";
+
+    options.InstanceName = "OrderService:";
+});
+builder.Services.AddScoped<IOrderCacheService, RedisOrderCacheService>();
 builder.Services.AddScoped<UpdateOrderHandler>();
 builder.Services.AddScoped<UpdateOrderValidator>();
 builder.Services.AddScoped<DeleteOrderHandler>();
