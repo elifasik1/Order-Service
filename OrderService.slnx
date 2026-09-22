@@ -11,6 +11,7 @@
     <Project Path="src/Shared.Contracts/Shared.Contracts.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/NotificationService.UnitTests/NotificationService.UnitTests.csproj" />
     <Project Path="tests/OrderService.IntegrationTests/OrderService.IntegrationTests.csproj" />
     <Project Path="tests/OrderService.UnitTests/OrderService.UnitTests.csproj" />
   </Folder>
