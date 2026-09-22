@@ -14,7 +14,12 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres"
       ConnectionStrings__Redis: "127.0.0.1:6379,abortConnect=false"
+      Jwt__SecretKey: "ci-only-jwt-secret-key-must-be-at-least-32-chars"
+      RabbitMQ__Host: "localhost"
+      RabbitMQ__Username: "guest"
+      RabbitMQ__Password: "guest"
 
     services:
       postgres:
