@@ -23,6 +23,7 @@ using AutoMapper;
 using OrderService.Application.Mappings;
 using OrderService.Application.Features.Orders.CreateOrder;
 using StackExchange.Redis;
+using MassTransit;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File(
@@ -35,7 +36,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHealthChecks();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("rabbitmq", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+    });
+});
 builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -85,6 +96,12 @@ builder.Services.AddStackExchangeRedisCache(options =>
 
     options.InstanceName = "OrderService:";
 });
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(
+    ConnectionMultiplexer.Connect(
+        builder.Configuration.GetConnectionString("Redis")
+        ?? "redis:6379"));
+
 builder.Services.AddScoped<IOrderCacheService, RedisOrderCacheService>();
 builder.Services.AddScoped<UpdateOrderHandler>();
 builder.Services.AddScoped<UpdateOrderValidator>();
@@ -97,7 +114,7 @@ builder.Services.AddScoped<RefreshHandler>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<MyOrdersHandler>();
 builder.Services.AddScoped<GetPagedOrdersHandler>();
-
+builder.Services.AddScoped<IEventPublisher, MassTransitEventPublisher>();
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
     ?? throw new InvalidOperationException("JWT settings not found.");
 

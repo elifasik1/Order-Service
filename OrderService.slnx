@@ -1,9 +1,14 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/NotificationService.API/NotificationService.API.csproj" />
+    <Project Path="src/NotificationService.Application/NotificationService.Application.csproj" />
+    <Project Path="src/NotificationService.Domain/NotificationService.Domain.csproj" />
+    <Project Path="src/NotificationService.Infrastructure/NotificationService.Infrastructure.csproj" />
     <Project Path="src/OrderService.API/OrderService.API.csproj" />
     <Project Path="src/OrderService.Application/OrderService.Application.csproj" />
     <Project Path="src/OrderService.Domain/OrderService.Domain.csproj" />
     <Project Path="src/OrderService.Infrastructure/OrderService.Infrastructure.csproj" />
+    <Project Path="src/Shared.Contracts/Shared.Contracts.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/OrderService.IntegrationTests/OrderService.IntegrationTests.csproj" />

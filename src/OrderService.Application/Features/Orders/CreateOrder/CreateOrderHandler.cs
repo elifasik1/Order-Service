@@ -2,7 +2,7 @@ using AutoMapper;
 using Domain.Entities;
 using OrderService.Application.Common;
 using OrderService.Application.Interfaces;
-
+using Shared.Contracts.Events;
 namespace OrderService.Application.Features.Orders.CreateOrder;
 
 public class CreateOrderHandler
@@ -11,18 +11,21 @@ public class CreateOrderHandler
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     private readonly IOrderCacheService _orderCacheService;
+    private readonly IEventPublisher _eventPublisher;
 
-    public CreateOrderHandler(
-        IOrderRepository orderRepository,
-        IUnitOfWork unitOfWork,
-        IMapper mapper,
-        IOrderCacheService orderCacheService)
-    {
-        _orderRepository = orderRepository;
-        _unitOfWork = unitOfWork;
-        _mapper = mapper;
-        _orderCacheService = orderCacheService;
-    }
+   public CreateOrderHandler(
+    IOrderRepository orderRepository,
+    IUnitOfWork unitOfWork,
+    IMapper mapper,
+    IOrderCacheService orderCacheService,
+    IEventPublisher eventPublisher)
+{
+    _orderRepository = orderRepository;
+    _unitOfWork = unitOfWork;
+    _mapper = mapper;
+    _orderCacheService = orderCacheService;
+    _eventPublisher = eventPublisher;
+}
 
     public async Task<Result<CreateOrderResponse>> Handle(
         Guid userId,
@@ -47,6 +50,14 @@ await _unitOfWork.SaveChangesAsync();
 
 await _orderCacheService.InvalidateOrdersCacheAsync();
 
+
+await _eventPublisher.PublishAsync(
+    new OrderCreatedEvent(
+        order.Id,
+        userId,
+        order.CustomerName,
+        order.TotalPrice,
+        order.CreatedAt));
 var response = _mapper.Map<CreateOrderResponse>(order);
 
         return Result<CreateOrderResponse>.Success(

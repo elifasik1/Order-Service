@@ -2,7 +2,7 @@ using AutoMapper;
 using Moq;
 using OrderService.Application.Features.Orders.CreateOrder;
 using OrderService.Application.Interfaces;
-
+using Shared.Contracts.Events;
 namespace OrderService.UnitTests;
 
 public class CreateOrderHandlerTests
@@ -15,6 +15,7 @@ public class CreateOrderHandlerTests
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var mapperMock = new Mock<IMapper>();
         var orderCacheServiceMock = new Mock<IOrderCacheService>();
+        var eventPublisherMock = new Mock<IEventPublisher>();
 
         mapperMock
             .Setup(x => x.Map<CreateOrderResponse>(
@@ -31,7 +32,8 @@ public class CreateOrderHandlerTests
             repositoryMock.Object,
             unitOfWorkMock.Object,
             mapperMock.Object,
-            orderCacheServiceMock.Object);
+            orderCacheServiceMock.Object,
+            eventPublisherMock.Object);
 
         var userId = Guid.NewGuid();
 
@@ -74,7 +76,7 @@ public class CreateOrderHandlerTests
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var mapperMock = new Mock<IMapper>();
         var orderCacheServiceMock = new Mock<IOrderCacheService>();
-
+        var eventPublisherMock = new Mock<IEventPublisher>();
         mapperMock
             .Setup(x => x.Map<CreateOrderResponse>(
                 It.IsAny<Domain.Entities.Order>()))
@@ -99,7 +101,8 @@ public class CreateOrderHandlerTests
             repositoryMock.Object,
             unitOfWorkMock.Object,
             mapperMock.Object,
-            orderCacheServiceMock.Object);
+            orderCacheServiceMock.Object,
+            eventPublisherMock.Object);
 
         var userId = Guid.NewGuid();
 
@@ -129,7 +132,7 @@ public class CreateOrderHandlerTests
         var unitOfWorkMock = new Mock<IUnitOfWork>();
         var mapperMock = new Mock<IMapper>();
         var orderCacheServiceMock = new Mock<IOrderCacheService>();
-
+        var eventPublisherMock = new Mock<IEventPublisher>();
         repositoryMock
             .Setup(x => x.AddAsync(It.IsAny<Domain.Entities.Order>()))
             .ThrowsAsync(new Exception("Repository error"));
@@ -138,7 +141,8 @@ public class CreateOrderHandlerTests
             repositoryMock.Object,
             unitOfWorkMock.Object,
             mapperMock.Object,
-            orderCacheServiceMock.Object);
+            orderCacheServiceMock.Object,
+            eventPublisherMock.Object);
 
         var userId = Guid.NewGuid();
 
@@ -187,11 +191,13 @@ public class CreateOrderHandlerTests
                 Status = order.Status
             });
 
+        var eventPublisherMock = new Mock<IEventPublisher>();
         var handler = new CreateOrderHandler(
             repositoryMock.Object,
             unitOfWorkMock.Object,
             mapperMock.Object,
-            orderCacheServiceMock.Object);
+            orderCacheServiceMock.Object,
+            eventPublisherMock.Object);
 
         var userId = Guid.NewGuid();
 
