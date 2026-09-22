@@ -22,6 +22,10 @@ public class CustomWebApplicationFactory
             "ConnectionStrings:Redis",
             "localhost:6379");
 
+        builder.UseSetting(
+            "Jwt:SecretKey",
+            "test-only-jwt-secret-key-that-is-long-enough");
+
         builder.ConfigureAppConfiguration((context, config) =>
         {
             config.AddInMemoryCollection(new Dictionary<string, string?>
@@ -30,7 +34,10 @@ public class CustomWebApplicationFactory
                     "Host=localhost;Port=5432;Database=OrderServiceTestDb;Username=postgres;Password=postgres",
 
                 ["ConnectionStrings:Redis"] =
-                    "localhost:6379"
+                    "localhost:6379",
+
+                ["Jwt:SecretKey"] =
+                    "test-only-jwt-secret-key-that-is-long-enough"
             });
         });
 

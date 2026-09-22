@@ -14,7 +14,7 @@ namespace OrderService.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "LastName", "PasswordHash", "UserRole", "UserStatus" },
-                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@orderservice.com", "System", "Admin", "Admin123!", 0, 0 });
+                values: new object[] { new Guid("11111111-1111-1111-1111-111111111111"), new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "admin@orderservice.com", "System", "Admin", "AQIAAACghgEAEAAAAKBpP2sMLzZEo8Sb/WV+jK8gAAAAS+xVIeE++3O86anFU107ofZxAdrTjBaAqLlYMPtVgLc=", 0, 0 });
         }
 
         /// <inheritdoc />

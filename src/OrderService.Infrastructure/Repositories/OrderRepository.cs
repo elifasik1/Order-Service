@@ -18,6 +18,8 @@ public class OrderRepository : Repository<Order>, IOrderRepository
 {
     return await _context.Orders
         .Where(x => !x.IsDeleted)
+        .OrderByDescending(x => x.CreatedAt)
+        .ThenByDescending(x => x.Id)
         .Skip((page - 1) * pageSize)
         .Take(pageSize)
         .ToListAsync();

@@ -168,6 +168,16 @@ Sistemi başlatmak için:
 
 docker compose up -d
 
+Compose, veritabanı ve broker bilgilerini environment variable'lardan alır. Başlatmadan önce örnek değerleri kendi ortamınız için ayarlayın:
+
+```powershell
+$env:POSTGRES_PASSWORD = "your-local-password"
+$env:JWT_SECRET = "your-long-random-jwt-secret"
+$env:RABBITMQ_USER = "your-rabbitmq-user"
+$env:RABBITMQ_PASSWORD = "your-rabbitmq-password"
+docker compose up -d --build
+```
+
 Çalışan container'ları görüntülemek için:
 
 docker compose ps
@@ -223,10 +233,7 @@ RabbitMQ yönetim paneli:
 
 http://localhost:15672
 
-Default development credentials:
-
-Username: guest
-Password: guest
+RabbitMQ credentials are supplied through `RABBITMQ_USER` and `RABBITMQ_PASSWORD`.
 
 RabbitMQ üzerinden servislerin event tabanlı iletişimi ve consumer topolojisi gözlemlenebilir.
 

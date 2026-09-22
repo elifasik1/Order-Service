@@ -1,16 +1,23 @@
 using OrderService.Application.Interfaces;
 using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 namespace OrderService.Application.Features.Auth.Login;
 public class LoginHandler
 {
     private readonly IUserRepository _userRepository;
+    private readonly IPasswordHasher<User> _passwordHasher;
 
     private readonly IJwtService _jwtService;
     private readonly IRefreshTokenRepository _refreshTokenRepository;
 
-    public LoginHandler(IUserRepository userRepository, IJwtService jwtService, IRefreshTokenRepository refreshTokenRepository)
+    public LoginHandler(
+        IUserRepository userRepository,
+        IPasswordHasher<User> passwordHasher,
+        IJwtService jwtService,
+        IRefreshTokenRepository refreshTokenRepository)
     {
         _userRepository = userRepository;
+        _passwordHasher = passwordHasher;
         _jwtService = jwtService;
         _refreshTokenRepository = refreshTokenRepository;
     }
@@ -22,7 +29,12 @@ public class LoginHandler
         {
             throw new UnauthorizedAccessException("Invalid email or password.");
         }
-        if (user.PasswordHash != request.Password)
+        var verificationResult = _passwordHasher.VerifyHashedPassword(
+            user,
+            user.PasswordHash,
+            request.Password);
+
+        if (verificationResult == PasswordVerificationResult.Failed)
         {
             throw new UnauthorizedAccessException("Invalid email or password.");
         }

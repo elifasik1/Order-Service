@@ -1,6 +1,7 @@
 using Moq;
 using OrderService.Application.Interfaces;
 using OrderService.Application.Features.Auth.Login;
+using Microsoft.AspNetCore.Identity;
 namespace OrderService.UnitTests;
 
 public class LoginHandlerTests
@@ -15,6 +16,7 @@ public class LoginHandlerTests
         var userRepositoryMock = new Mock<IUserRepository>();
         var jwtServiceMock = new Mock<IJwtService>();
         var refreshTokenRepositoryMock = new Mock<IRefreshTokenRepository>();
+        var passwordHasher = new PasswordHasher<Domain.Entities.User>();
 
         var request = new LoginRequest
         {
@@ -30,7 +32,7 @@ public class LoginHandlerTests
             {
                 Id = Guid.NewGuid(),
                 Email = request.Email,
-                PasswordHash = "correct-password"
+                PasswordHash = passwordHasher.HashPassword(null!, "correct-password")
             };
 
             userRepositoryMock
@@ -46,6 +48,7 @@ public class LoginHandlerTests
 
         var handler = new LoginHandler(
             userRepositoryMock.Object,
+            passwordHasher,
             jwtServiceMock.Object,
             refreshTokenRepositoryMock.Object);
 
@@ -64,12 +67,13 @@ public async Task Handle_ValidCredentials_ShouldReturnTokensAndSaveRefreshToken(
     var userRepositoryMock = new Mock<IUserRepository>();
     var jwtServiceMock = new Mock<IJwtService>();
     var refreshTokenRepositoryMock = new Mock<IRefreshTokenRepository>();
+    var passwordHasher = new PasswordHasher<Domain.Entities.User>();
 
     var user = new Domain.Entities.User
     {
         Id = Guid.NewGuid(),
         Email = "test@test.com",
-        PasswordHash = "correct-password"
+        PasswordHash = passwordHasher.HashPassword(null!, "correct-password")
     };
 
     userRepositoryMock
@@ -86,6 +90,7 @@ public async Task Handle_ValidCredentials_ShouldReturnTokensAndSaveRefreshToken(
 
     var handler = new LoginHandler(
         userRepositoryMock.Object,
+        passwordHasher,
         jwtServiceMock.Object,
         refreshTokenRepositoryMock.Object);
 

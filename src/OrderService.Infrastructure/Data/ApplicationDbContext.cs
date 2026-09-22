@@ -26,7 +26,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         FirstName = "System",
         LastName = "Admin",
         Email = "admin@orderservice.com",
-        PasswordHash = "Admin123!",
+        PasswordHash = "AQIAAACghgEAEAAAAKBpP2sMLzZEo8Sb/WV+jK8gAAAAS+xVIeE++3O86anFU107ofZxAdrTjBaAqLlYMPtVgLc=",
         UserRole = Domain.Enums.UserRole.Admin,
         UserStatus = Domain.Enums.UserStatus.Active,
         CreatedAt = new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc)

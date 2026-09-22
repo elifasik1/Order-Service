@@ -1,16 +1,22 @@
 
 
 using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using OrderService.Application.Interfaces;
 namespace OrderService.Application.Features.Auth.Register;
 public class RegisterHandler
 {
-      private readonly IUserRepository _userRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly IPasswordHasher<User> _passwordHasher;
 
     private readonly IJwtService _jwtService;
-    public RegisterHandler(IUserRepository userRepository, IJwtService jwtService)
+    public RegisterHandler(
+        IUserRepository userRepository,
+        IPasswordHasher<User> passwordHasher,
+        IJwtService jwtService)
     {
         _userRepository = userRepository;
+        _passwordHasher = passwordHasher;
         _jwtService = jwtService;
     }
 
@@ -28,13 +34,14 @@ public class RegisterHandler
             FirstName = request.FirstName,
             LastName = request.LastName,
             Email = request.Email,
-            PasswordHash = request.Password,
+            PasswordHash = string.Empty,
             UserRole = Domain.Enums.UserRole.User,
             UserStatus = Domain.Enums.UserStatus.Active,
             CreatedAt = DateTime.UtcNow
             
-             // In a real application, you should hash the password before storing it.
         };
+
+           newUser.PasswordHash = _passwordHasher.HashPassword(newUser, request.Password);
 
         await _userRepository.AddAsync(newUser);
         await _userRepository.SaveChangesAsync();   // <-- BUNU EKLE

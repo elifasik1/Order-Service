@@ -13,6 +13,7 @@ using System.Text;
 using OrderService.Application.Features.Auth.Register;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using OrderService.API.Extensions;
 using OrderService.Application.Features.Orders.GetMyOrders;
@@ -24,6 +25,7 @@ using OrderService.Application.Mappings;
 using OrderService.Application.Features.Orders.CreateOrder;
 using StackExchange.Redis;
 using MassTransit;
+using RabbitMQ.Client;
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .WriteTo.File(
@@ -32,23 +34,25 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 var builder = WebApplication.CreateBuilder(args);
 builder.Host.UseSerilog();
+var redisConnection = builder.Configuration.GetConnectionString("Redis") ?? "redis:6379";
+var rabbitMqHost = builder.Configuration["RabbitMQ:Host"]
+    ?? (builder.Environment.IsEnvironment("Testing") ? "localhost" : "rabbitmq");
+var rabbitMqUsername = builder.Configuration["RabbitMQ:Username"]
+    ?? (builder.Environment.IsEnvironment("Testing") ? "guest" : throw new InvalidOperationException("RabbitMQ username is required."));
+var rabbitMqPassword = builder.Configuration["RabbitMQ:Password"]
+    ?? (builder.Environment.IsEnvironment("Testing") ? "guest" : throw new InvalidOperationException("RabbitMQ password is required."));
+var rabbitMqConnectionString = $"amqp://{Uri.EscapeDataString(rabbitMqUsername)}:{Uri.EscapeDataString(rabbitMqPassword)}@{rabbitMqHost}:5672/";
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddHealthChecks();
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((context, cfg) =>
     {
-        var rabbitMqHost =
-            builder.Environment.IsEnvironment("Testing")
-                ? "localhost"
-                : "rabbitmq";
-
         cfg.Host(rabbitMqHost, "/", h =>
         {
-            h.Username("guest");
-            h.Password("guest");
+            h.Username(rabbitMqUsername);
+            h.Password(rabbitMqPassword);
         });
     });
 });
@@ -89,25 +93,26 @@ builder.Services.AddAutoMapper(cfg =>
 });
 builder.Services.AddScoped<GetOrdersHandler>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString))
+    throw new InvalidOperationException("DefaultConnection is required.");
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
 });
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration =
-        builder.Configuration.GetConnectionString("Redis")
-        ?? "redis:6379";
+    options.Configuration = redisConnection;
 
     options.InstanceName = "OrderService:";
 });
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(
     ConnectionMultiplexer.Connect(
-        builder.Configuration.GetConnectionString("Redis")
-        ?? "redis:6379"));
+        redisConnection));
 
 builder.Services.AddScoped<IOrderCacheService, RedisOrderCacheService>();
+    builder.Services.AddScoped<IPasswordHasher<Domain.Entities.User>, PasswordHasher<Domain.Entities.User>>();
 builder.Services.AddScoped<UpdateOrderHandler>();
 builder.Services.AddScoped<UpdateOrderValidator>();
 builder.Services.AddScoped<DeleteOrderHandler>();
@@ -119,9 +124,22 @@ builder.Services.AddScoped<RefreshHandler>();
 builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
 builder.Services.AddScoped<MyOrdersHandler>();
 builder.Services.AddScoped<GetPagedOrdersHandler>();
+builder.Services.AddScoped<GetPagedOrdersValidator>();
 builder.Services.AddScoped<IEventPublisher, MassTransitEventPublisher>();
+builder.Services.AddHealthChecks()
+    .AddNpgSql(connectionString, name: "postgres")
+    .AddRedis(redisConnection, name: "redis")
+    .AddRabbitMQ(
+        _ => new ConnectionFactory { Uri = new Uri(rabbitMqConnectionString) }
+            .CreateConnectionAsync()
+            .GetAwaiter()
+            .GetResult(),
+        name: "rabbitmq");
 var jwtSettings = builder.Configuration.GetSection("Jwt").Get<JwtSettings>()
     ?? throw new InvalidOperationException("JWT settings not found.");
+
+if (string.IsNullOrWhiteSpace(jwtSettings.SecretKey) || jwtSettings.SecretKey.Length < 32)
+    throw new InvalidOperationException("Jwt:SecretKey must be supplied through configuration and be at least 32 characters long.");
 
 var key = Encoding.UTF8.GetBytes(jwtSettings.SecretKey);
 
@@ -162,6 +180,12 @@ builder.Services.AddScoped<LoginHandler>();
 builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<RegisterValidator>();
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await dbContext.Database.MigrateAsync();
+}
+
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
@@ -247,13 +271,18 @@ app.MapPut("/orders/{id:guid}",
 app.MapGet("/orders",
 async (
     [AsParameters] GetPagedOrdersRequest request,
+    GetPagedOrdersValidator validator,
     GetPagedOrdersHandler handler) =>
 {
+    var validation = validator.Validate(request);
+    if (!validation.IsValid)
+        return Results.BadRequest(validation.Errors);
+
     var response = await handler.Handle(request);
 
     return Results.Ok(response);
 })
-.RequireAuthorization();
+.RequireAuthorization("AdminOnly");
 
 
 app.MapPost("/auth/login",

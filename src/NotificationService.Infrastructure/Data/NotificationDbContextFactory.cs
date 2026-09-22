@@ -12,7 +12,9 @@ public class NotificationDbContextFactory
             new DbContextOptionsBuilder<NotificationDbContext>();
 
         optionsBuilder.UseNpgsql(
-            "Host=localhost;Port=5432;Database=NotificationServiceDb;Username=postgres;Password=postgres");
+            Environment.GetEnvironmentVariable("ConnectionStrings__NotificationConnection")
+            ?? throw new InvalidOperationException(
+                "ConnectionStrings__NotificationConnection is required."));
 
         return new NotificationDbContext(optionsBuilder.Options);
     }

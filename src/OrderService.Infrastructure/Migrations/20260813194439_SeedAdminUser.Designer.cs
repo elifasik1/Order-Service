@@ -156,7 +156,7 @@ namespace OrderService.Infrastructure.Migrations
                             Email = "admin@orderservice.com",
                             FirstName = "System",
                             LastName = "Admin",
-                            PasswordHash = "Admin123!",
+                            PasswordHash = "AQIAAACghgEAEAAAAKBpP2sMLzZEo8Sb/WV+jK8gAAAAS+xVIeE++3O86anFU107ofZxAdrTjBaAqLlYMPtVgLc=",
                             UserRole = 0,
                             UserStatus = 0
                         });
