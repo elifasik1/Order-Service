@@ -1,139 +1,401 @@
 # 🚀 Order Service
 
-> Modern .NET ve Clean Architecture prensipleriyle geliştirdiğim örnek **Order Service** projesi.
+Modern .NET 10 ve Clean Architecture prensipleriyle geliştirilmiş, JWT tabanlı kimlik doğrulama, PostgreSQL, Redis, RabbitMQ ve MassTransit kullanan mikroservis tabanlı örnek bir backend projesidir.
 
-Bu proje, mezuniyet sonrasında backend geliştirme becerilerimi sistematik olarak geliştirmek amacıyla başlattığım **"Backend Günlüğü"** serisinin bir parçasıdır.
+Bu proje, mezuniyet sonrasında backend geliştirme becerilerimi sistematik olarak geliştirmek amacıyla yürüttüğüm **Backend Günlüğü** sürecinin bir parçasıdır.
 
-Her görev, gerçek bir şirkette karşılaşılabilecek task mantığıyla ilerlemekte; geliştirme süreci GitHub commit'leri ve Medium yazılarıyla belgelenmektedir.
+Geliştirme sürecinde gerçek backend task mantığı takip edilmiş; kod, testler, Docker altyapısı, CI pipeline ve öğrenme süreci GitHub ve Medium üzerinden belgelenmiştir.
 
 ---
 
-## 🏗️ Proje Mimarisi
+## 📌 Proje Hakkında
 
-Proje **Clean Architecture** yaklaşımıyla geliştirilmektedir.
+Proje iki bağımsız servisten oluşmaktadır:
 
-```
+- **Order Service** → Siparişlerin oluşturulması, güncellenmesi, listelenmesi ve yönetilmesinden sorumludur.
+- **Notification Service** → Order Service tarafından yayınlanan `OrderCreatedEvent` olayını RabbitMQ üzerinden tüketerek bildirim kaydı oluşturur.
+
+Servisler arasında doğrudan HTTP bağımlılığı bulunmaz.
+
+```text
+┌─────────────────────┐
+│    Order Service    │
+│       :8080         │
+│                     │
+│ Clean Architecture  │
+│ JWT Authentication  │
+│ PostgreSQL          │
+│ Redis Cache         │
+└──────────┬──────────┘
+           │
+           │ OrderCreatedEvent
+           ▼
+┌─────────────────────┐
+│      RabbitMQ       │
+│       :5672         │
+└──────────┬──────────┘
+           │
+           │ Consume
+           ▼
+┌─────────────────────┐
+│ NotificationService │
+│       :8081         │
+│                     │
+│ MassTransit Consumer│
+│ PostgreSQL          │
+└─────────────────────┘
+Bu yapı sayesinde servisler gevşek bağlı (loosely coupled) şekilde çalışır.
+🏗️ Mimari
+Order Service
 src
 ├── OrderService.API
 ├── OrderService.Application
 ├── OrderService.Domain
 └── OrderService.Infrastructure
-```
 
-Katmanlar tek sorumluluk prensibine göre ayrılmıştır.
+Katmanların sorumlulukları:
 
-- **API** → HTTP isteklerini karşılar.
-- **Application** → Use Case / CQRS katmanı.
-- **Domain** → Entity ve iş kuralları.
-- **Infrastructure** → Veritabanı ve dış servisler.
+Katman	Sorumluluk
+API	HTTP istekleri, authentication ve endpoint'ler
+Application	Use Case'ler, CQRS, handler'lar, DTO'lar ve abstraction'lar
+Domain	Entity'ler ve iş kuralları
+Infrastructure	EF Core, PostgreSQL, Redis, RabbitMQ ve dış servis implementasyonları
+Notification Service
+src
+├── NotificationService.API
+├── NotificationService.Application
+├── NotificationService.Domain
+└── NotificationService.Infrastructure
 
----
+Notification Service, OrderCreatedEvent mesajını MassTransit üzerinden tüketir ve kendi PostgreSQL veritabanına notification kaydı oluşturur.
 
-## 🛠️ Kullanılan Teknolojiler
+🛠️ Kullanılan Teknolojiler
+Backend
+.NET 10
+C#
+ASP.NET Core Minimal API
+Clean Architecture
+CQRS
+Data
+Entity Framework Core
+PostgreSQL
+Redis
+Authentication & Authorization
+JWT Bearer Authentication
+Roles & Claims
+Policy-based Authorization
+Messaging & Microservices
+RabbitMQ
+MassTransit
+Event-driven communication
+Testing
+xUnit
+Moq
+Integration Tests
+Health Check Tests
+Notification Consumer Tests
+DevOps
+Docker
+Docker Compose
+GitHub Actions
+CI pipeline
+Logging & Monitoring
+Serilog
+Health Checks
+✨ Temel Özellikler
+Order Management
+Sipariş oluşturma
+Sipariş listeleme
+Sayfalama
+Sipariş detayına erişim
+Sipariş güncelleme
+Sipariş silme
+Kullanıcıya ait siparişleri görüntüleme
+Authentication & Authorization
+JWT token authentication
+Role-based authorization
+Admin / User / Customer policy'leri
+Korumalı endpoint'ler
+Validation
+FluentValidation ile request validation
+Exception Handling
+Global Exception Middleware
+Merkezi hata yönetimi
+Logging
+Serilog ile yapılandırılmış loglama
+Console ve file logging
+Caching
+Redis tabanlı cache
+Sayfalı sipariş listelerinde caching
+Create / Update / Delete işlemlerinde cache invalidation
+Optimistic Concurrency
 
-- .NET 10
-- C#
-- ASP.NET Core Minimal API
-- Clean Architecture
-- CQRS
-- Git & GitHub
+Sipariş güncellemelerinde optimistic concurrency yaklaşımı kullanılmıştır.
 
-> Proje ilerledikçe aşağıdaki teknolojiler de eklenecektir:
+PostgreSQL tarafındaki version mekanizması ile aynı kaynağın eşzamanlı olarak değiştirilmesi kontrol edilir.
 
-- Entity Framework Core
-- PostgreSQL
-- FluentValidation
-- JWT Authentication
-- Docker
-- Redis
+Event-Driven Communication
 
----
+Sipariş oluşturulduğunda:
 
-# 📌 Sprint Durumu
+OrderService
+    ↓
+OrderCreatedEvent
+    ↓
+RabbitMQ
+    ↓
+NotificationService
+    ↓
+Notification DB
 
-## Sprint 1 ✅
+Notification Service, Order Service'i doğrudan çağırmadan event üzerinden bildirim oluşturur.
 
-- [x] TASK-001 — Clean Architecture kurulumu
-- [x] TASK-002 — Health Endpoint
-- [x] TASK-003 — Order Entity
-- [x] TASK-004 — CreateOrder Request & Response DTO
-- [x] TASK-005 — CreateOrder Handler
+🐳 Docker Compose
 
----
+Projenin altyapısı Docker Compose ile birlikte çalışacak şekilde yapılandırılmıştır.
 
-## 🚧 Devam Eden Geliştirmeler
+Çalışan temel servisler:
 
-- Validation
-- Repository Pattern
-- EF Core
-- PostgreSQL
-- Authentication
-- Docker
+Servis	Port
+Order Service	8080
+Notification Service	8081
+PostgreSQL	5432
+Redis	6379
+RabbitMQ	5672
+RabbitMQ Management	15672
 
----
+Sistemi başlatmak için:
 
-# 📖 Backend Günlüğü
+docker compose up -d
 
-Bu proje boyunca öğrendiklerimi Medium'da düzenli olarak paylaşıyorum.
+Çalışan container'ları görüntülemek için:
 
-| Bölüm | Konu |
-|--------|------|
-| #1 | Yapay Zekâ ile Değil, Yapay Zekâyla Öğreniyorum *(Yakında)* |
+docker compose ps
 
-> Yeni yazılar yayınlandıkça bu tablo güncellenecektir.
+Sistemi durdurmak için:
 
----
+docker compose down
 
-# 💻 Projeyi Çalıştırma
+PostgreSQL verilerinin bulunduğu volume'u silmek istemiyorsanız docker compose down -v kullanmayın.
 
-```bash
+▶️ Projeyi Çalıştırma
+Gereksinimler
+.NET 10 SDK
+Docker Desktop
+Git
+
+Projeyi klonlayın:
+
 git clone https://github.com/elifasik1/Order-Service.git
-
 cd Order-Service
+
+Dependency'leri yükleyin:
 
 dotnet restore
 
+Projeyi build edin:
+
 dotnet build
 
-cd src/OrderService.API
+Docker ortamını başlatın:
 
-dotnet run
-```
+docker compose up -d
+🌐 API
+Order Service
+http://localhost:8080
 
-API varsayılan olarak aşağıdaki adreste çalışacaktır.
+Swagger:
 
-```
-http://localhost:5110
-```
+http://localhost:8080/swagger
 
-Health kontrolü:
+Health Check:
 
-```
 GET /health
-```
+Notification Service
+http://localhost:8081
 
----
+Swagger:
 
-# 🎯 Projenin Amacı
+http://localhost:8081/swagger
+🐇 RabbitMQ Management
 
-Bu proje yalnızca çalışan bir Order Service geliştirmek için değil;
+RabbitMQ yönetim paneli:
 
-- Backend geliştirme pratiği yapmak,
-- Clean Architecture prensiplerini uygulamak,
-- Gerçek bir geliştirme sürecini deneyimlemek,
-- Düzenli commit alışkanlığı kazanmak,
-- Öğrenme sürecimi belgelemek
+http://localhost:15672
 
-amacıyla geliştirilmektedir.
+Default development credentials:
 
----
+Username: guest
+Password: guest
 
-# 🤝 Geri Bildirim
+RabbitMQ üzerinden servislerin event tabanlı iletişimi ve consumer topolojisi gözlemlenebilir.
 
-Her türlü öneri ve geri bildirime açığım.
+🧪 Testler
 
-Backend geliştirme yolculuğum boyunca farklı bakış açılarıyla öğrenmeye devam etmek istiyorum.
+Projede unit ve integration testleri bulunmaktadır.
 
----
+Tüm testleri çalıştırmak için:
 
-⭐ Eğer projeyi ilgi çekici bulduysanız yıldız bırakmayı unutmayın.
+dotnet test
+
+Test kapsamı içerisinde:
+
+Application handler testleri
+Authentication testleri
+Middleware testleri
+Integration endpoint testleri
+Health check testleri
+Notification consumer testleri
+Redis cache davranışı için mocked test senaryoları
+
+bulunmaktadır.
+
+🔄 CI Pipeline
+
+GitHub Actions kullanılarak repository'ye yapılan push ve pull request işlemlerinde otomatik build ve test çalıştırılmaktadır.
+
+Pipeline temel olarak:
+
+Checkout
+   ↓
+Setup .NET
+   ↓
+Restore
+   ↓
+Build
+   ↓
+Database Setup
+   ↓
+Test
+
+adımlarını takip eder.
+
+📐 Architecture Decisions
+Neden Clean Architecture?
+
+Business logic'in framework ve infrastructure detaylarından ayrılması, test edilebilirliğin artırılması ve bağımlılıkların kontrol altında tutulması amacıyla Clean Architecture kullanılmıştır.
+
+Neden RabbitMQ?
+
+Order Service ile Notification Service arasında doğrudan HTTP bağımlılığı oluşturmak yerine asynchronous communication tercih edilmiştir.
+
+Böylece Notification Service, Order Service'in implementation detaylarına bağımlı olmadan OrderCreatedEvent üzerinden çalışır.
+
+Neden MassTransit?
+
+RabbitMQ ile mesajlaşma altyapısını daha yüksek seviyede yönetmek, consumer ve publishing işlemlerini daha standart bir şekilde gerçekleştirmek amacıyla MassTransit kullanılmıştır.
+
+Neden Redis?
+
+Sık erişilen sayfalı sipariş listelerindeki tekrar eden database sorgularını azaltmak amacıyla caching uygulanmıştır.
+
+Neden Optimistic Concurrency?
+
+Aynı siparişin eşzamanlı olarak güncellenmesi durumunda son yazanın sessizce önceki değişikliği ezmesini önlemek amacıyla optimistic concurrency uygulanmıştır.
+
+📊 Proje Akışı
+
+Örnek bir sipariş oluşturma akışı:
+
+Client
+  │
+  ▼
+Order Service
+  │
+  ├── Validate Request
+  │
+  ├── Create Order
+  │
+  ├── Save to PostgreSQL
+  │
+  ├── Invalidate Redis Cache
+  │
+  └── Publish OrderCreatedEvent
+              │
+              ▼
+          RabbitMQ
+              │
+              ▼
+      Notification Service
+              │
+              ▼
+       Notification DB
+
+Buradaki önemli nokta:
+
+Order Service ─X→ HTTP → Notification Service
+
+yerine:
+
+Order Service → RabbitMQ → Notification Service
+
+kullanılmasıdır.
+
+📚 Backend Günlüğü
+
+Bu proje boyunca öğrendiğim konuları Medium'daki Backend Günlüğü serisinde belgeledim.
+
+Bölüm	Konu
+#1	Yapay Zekâ ile Değil, Yapay Zekâyla Öğreniyorum
+#2	Yazılımda "Neden?" Sorusunu Öğreniyorum
+#3	Bir API Yazmaktan, Bir Sistem Kurmaya
+#4	Kod Çalışıyordu, Peki Ya Sonra?
+#5	Bir Backend Ne Zaman Güvenilir Olur?
+#6	Koduma Ne Kadar Güvenebilirim?
+🎯 Projenin Amacı
+
+Bu proje yalnızca çalışan bir API geliştirmek amacıyla oluşturulmamıştır.
+
+Ana hedefler:
+
+Backend geliştirme pratiğini gerçek task mantığıyla ilerletmek
+Clean Architecture uygulamak
+REST API geliştirmek
+Authentication ve Authorization kullanmak
+PostgreSQL ve EF Core ile çalışmak
+Redis caching uygulamak
+RabbitMQ ve MassTransit ile event-driven communication kurmak
+Mikroservisler arası loose coupling yaklaşımını uygulamak
+Unit ve integration testleri geliştirmek
+Docker ile containerization uygulamak
+GitHub Actions ile CI pipeline oluşturmak
+Geliştirme sürecini dokümante etmek
+📌 Proje Durumu
+
+Proje, temel backend geliştirme aşamasından mikroservis tabanlı çalışan bir sisteme kadar geliştirilmiştir.
+
+Mevcut yapı:
+
+✅ Clean Architecture
+✅ CQRS
+✅ CRUD
+✅ PostgreSQL
+✅ Entity Framework Core
+✅ FluentValidation
+✅ JWT Authentication
+✅ Authorization & Policies
+✅ Global Exception Middleware
+✅ Serilog
+✅ Pagination
+✅ Optimistic Concurrency
+✅ Health Checks
+✅ Unit Tests
+✅ Integration Tests
+✅ GitHub Actions
+✅ Docker Compose
+✅ Redis Caching
+✅ RabbitMQ
+✅ MassTransit
+✅ Notification Service
+✅ Event-driven communication
+👩‍💻 Geliştirici
+
+Elif Aşık
+
+Computer Engineering Graduate
+
+GitHub:
+
+https://github.com/elifasik1
+
+⭐ Eğer projeyi incelemek veya geliştirme sürecini takip etmek isterseniz repository'ye göz atabilirsiniz.
