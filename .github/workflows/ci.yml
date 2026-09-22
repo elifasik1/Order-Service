@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
@@ -51,7 +52,7 @@ jobs:
       - name: Test
         run: dotnet test --no-build
 
-              - name: Validate Docker Compose
+      - name: Validate Docker Compose
         run: docker compose config
 
       - name: Build Docker Image
